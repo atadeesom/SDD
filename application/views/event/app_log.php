@@ -5,7 +5,7 @@
 	<li>test</li>
 	<li>test</li>
 	<li>test</li>
-	<li>test</li>
+	<li>test1</li>
 </ul>
  <div class="input-group">
       <div class="input-group-addon">$</div>
