@@ -1,3 +1,4 @@
+<h1><?php echo $title; ?></h1>
 <p>List list:</p>
 <ul>
 	<li><?php echo $title;?></li>

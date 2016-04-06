@@ -1,3 +1,3 @@
-                <em>&copy; 2016</em>
+                <em>&copy; <?php echo date('Y');?></em>
         </body>
 </html>

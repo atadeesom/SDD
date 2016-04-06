@@ -18,17 +18,34 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	
+	/**
+	 * This method uses to manage our homepage.
+	 */
 	public function index()
 	{
-		$data['title'] = 'Dashboard';
-		$this->load->view('template/header',$data);
+		// Set the page element
+		$page_element['page_title'] = "Welcome";
+		$page_element['method_name'] = "Index";
+		$data['title'] = 'Welcome';
+		
+		// return data to view
+		$this->load->view('template/header',$page_element);
 		$this->load->view('event/app_log',$data);
 		$this->load->view('template/footer',$data);
 	}
 
+	/**
+	 * This method uses for view testing only.
+	 */
 	public function load(){
-		$data['title'] = 'Dashboard';
-		$this->load->view('template/header',$data);
+		// Set the page element
+		$page_element['page_title'] = "Welcome";
+		$page_element['method_name'] = "Load";
+		$data['title'] = 'Welcome';
+		
+		// return data to view
+		$this->load->view('template/header',$page_element);
 		$this->load->view('welcome_message',$data);
 		$this->load->view('template/footer',$data);
 	}
