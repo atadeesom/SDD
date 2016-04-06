@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['title'] = 'Dashboard';
 		$this->load->view('template/header',$data);
-		$this->load->view('event/app_log',$data);
+		$this->load->view('event/Log_Mg_Home',$data);
 		$this->load->view('template/footer',$data);
 	}
 
