@@ -77,27 +77,36 @@ class Event extends CI_Controller {
 				{
 					// response error 
 					$respo['status_code'] = 404;
-					$respo['status_massage'] = 'Internal Error: Unable to write file content';
-					echo json_encode($respo);
-					exit();// throw from this execution
-				}
-			}
-
-			// Append data into new line.
-			$line = $this->newline.$datetime.",".$user_id.",".$user_ip.",".$session_id.",".$message;
-			if(!write_file($path, $line , "a+"))
-			{
-				$respo['status_code'] = 404;
-				$respo['status_massage'] = 'Internal Error: Unable to write file content';
-				echo json_encode($respo);
-				exit(); //throw from this execution
-			}
-			echo json_encode($respo);
-		}else {
-			$respo['status_code'] = 400;
-			$respo['status_massage'] = 'Bad Request: Parameter is not enough.';
-			echo json_encode($respo);
+		
+		
+		
+		
+		
+	}
+	
+	public function display_application_log(){
+		$myFile = fopen("../SDD/application/event/security/20160406.txt","r") or die("Unable to open file!");
+		
+		$logs = array();
+		while (!feof($myFile)) {
+			array_push($logs,fgets($myFile));
 		}
+		fclose($myFile);
+		
+		// Set the page element
+		$page_element['page_title'] = "Event";
+		$page_element['method_name'] = "Display Application Log";
+		
+		$data['date'] = array();
+		$data['logs'] = array();
+		array_push($data['logs'],$logs);
+		array_push($data['date'],'2016-04-10');
+		
+		// return data to view
+		$this->load->view('template/header',$page_element);
+		$this->load->view('event/index',$data);
+		$this->load->view('template/footer',$data);
+		
 	}
 	
 	/**

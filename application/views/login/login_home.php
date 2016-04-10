@@ -44,7 +44,28 @@
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
-
+	
+	<div>
+		<b>Date:</b> <?php print_r($date[0])?>
+		<table>
+			<tr>
+				<td>Date</td>
+				<td>User ID</td>
+				<td>User IP</td>
+				<td>Session ID</td>
+				<td>Detail</td>
+			</tr>
+			
+		</table>
+		
+		
+		<?php
+			print_r($logs[0][0]);
+		?>
+	</div>
+	
+	
+	
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url('styles/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
     <!-- Bootstrap 3.3.5 -->
