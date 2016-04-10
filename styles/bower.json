@@ -1,34 +1,33 @@
 {
-  "name": "bootstrap",
-  "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+  "name": "AdminLTE",
+  "homepage": "http://almsaeedstudio.com",
+  "authors": [
+    "Abdullah Almsaeed <support@almsaeedstudio.com>"
+  ],
+  "description": "Admin dashboard and control panel template",
+  "main": [
+    "index2.html",
+    "dist/css/AdminLTE.css",
+    "dist/js/app.js",
+    "build/less/AdminLTE.less"
+  ],
   "keywords": [
     "css",
     "js",
-    "less",
-    "mobile-first",
-    "responsive",
-    "front-end",
-    "framework",
-    "web"
+    "html",
+    "template",
+    "admin",
+    "bootstrap",
+    "theme",
+    "backend",
+    "responsive"
   ],
-  "homepage": "http://getbootstrap.com",
   "license": "MIT",
-  "moduleType": "globals",
-  "main": [
-    "less/bootstrap.less",
-    "dist/js/bootstrap.js"
-  ],
   "ignore": [
     "/.*",
-    "_config.yml",
-    "CNAME",
+    "node_modules",
+    "bower_components",
     "composer.json",
-    "CONTRIBUTING.md",
-    "docs",
-    "js/tests",
-    "test-infra"
-  ],
-  "dependencies": {
-    "jquery": "1.9.1 - 2"
-  }
+    "documentation"
+  ]
 }
