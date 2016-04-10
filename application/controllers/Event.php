@@ -26,7 +26,7 @@ class Event extends CI_Controller {
 		
 		// return data to view
 		$this->load->view('template/header',$page_element);
-		$this->load->view('event/index',$data);
+		$this->load->view('event/Log_Mg_Home',$data);
 		$this->load->view('template/footer',$data);
 	}
 

@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
 		
 		// return data to view
 		$this->load->view('template/header',$page_element);
-		$this->load->view('event/app_log',$data);
+		$this->load->view('event/Log_MG_Home',$data);
 		$this->load->view('template/footer',$data);
 	}
 
