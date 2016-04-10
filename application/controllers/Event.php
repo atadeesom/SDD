@@ -10,8 +10,8 @@ class Event extends CI_Controller {
 	
 	private $file_extension = ".txt";
 	private $file_header_security = 'datetime,user_id,user_ip,session_id,message';
-	private $file_header_application = 'datetime,user_id,message';
-	private $newline = "\n";
+	private $file_header_application = 'datetime,user_id,user_ip,session_id,message';
+	private $newline = "\r\n";
 	
 	/**
 	 * This method uses for displaying Event Homepage.
@@ -47,6 +47,57 @@ class Event extends CI_Controller {
 		// 2.Check the file exists.
 		// 3.Append log message in new line
 		// 4.Return status
+
+		// response result
+		$respo['status_code'] = 200;
+		$respo['status_massage'] = 'success';
+
+		/*
+		 * For test uncomment these lines
+		 */
+		$datetime = date('Ymd H:i:s');
+		$user_id = '9999';
+		$user_ip = '192.108.1.1';
+		$session_id = 'Ae40329f99';
+		$message = "Ko_Test";
+
+		// Check empty element. Element must fill
+		if(!(empty($datetime) and empty($user_id) and empty($user_ip) and empty($session_id) and empty($message))) 
+		{
+			$path = FCPATH.'application/event/application/'.date("Ymd").$this->file_extension;
+
+			// Check current date file exists
+			$hasCurrentDateFile = file_exists($path);
+			
+			// if file not exists
+			if(!$hasCurrentDateFile)
+			{
+				// create new file 
+				if (!file_put_contents ($path, $this->file_header_application))
+				{
+					// response error 
+					$respo['status_code'] = 404;
+					$respo['status_massage'] = 'Internal Error: Unable to write file content';
+					echo json_encode($respo);
+					exit();// throw from this execution
+				}
+			}
+
+			// Append data into new line.
+			$line = $this->newline.$datetime.",".$user_id.",".$user_ip.",".$session_id.",".$message;
+			if(!write_file($path, $line , "a+"))
+			{
+				$respo['status_code'] = 404;
+				$respo['status_massage'] = 'Internal Error: Unable to write file content';
+				echo json_encode($respo);
+				exit(); //throw from this execution
+			}
+			echo json_encode($respo);
+		}else {
+			$respo['status_code'] = 400;
+			$respo['status_massage'] = 'Bad Request: Parameter is not enough.';
+			echo json_encode($respo);
+		}
 	}
 	
 	/**
