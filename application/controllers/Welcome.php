@@ -30,10 +30,23 @@ class Welcome extends CI_Controller {
 		$data['title'] = 'Welcome';
 		
 		// return data to view
+		$this->load->view('dashboard/teacher_dash',$data);
+	}
+	
+	public function index_back()//soft backup
+	{
+		// Set the page element
+		$page_element['page_title'] = "Welcome";
+		$page_element['method_name'] = "Index";
+		$data['title'] = 'Welcome';
+		
+		// return data to view
 		$this->load->view('template/header',$page_element);
-		$this->load->view('event/index',$data);
+		$this->load->view('login/login_home',$data);
 		$this->load->view('template/footer',$data);
 	}
+
+	
 
 	/**
 	 * This method uses for view testing only.

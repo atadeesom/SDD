@@ -32,23 +32,25 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <div class="social-auth-links text-center">
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Admin Console</a>
-          <a href="teacher_dash.php" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Lecturer Console</a>
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Student Console</a>
+          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Student Dash Board</a>
+          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Lecturer Dash Board</a>
+          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Lecturer Report Console</a>
+          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Admin Application Log Console</a>
+          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Admin Security Log Console</a>
         </div><!-- /.social-auth-links -->
 
         <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="#" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="styles/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url('styles/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="styles/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url('styles/bootstrap/js/bootstrap.min.js')?>"></script>
     <!-- iCheck -->
-    <script src="styles/plugins/iCheck/icheck.min.js"></script>
+    <script src="<?php echo base_url('styles/plugins/iCheck/icheck.min.js')?>"></script>
     <script>
       $(function () {
         $('input').iCheck({
