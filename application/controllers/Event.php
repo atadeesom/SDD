@@ -77,19 +77,23 @@ class Event extends CI_Controller {
 				{
 					// response error 
 					$respo['status_code'] = 404;
-		
-		
-		
-		
-		
+				}
+			}
+		}
 	}
 	
 	public function display_application_log(){
+		$firstRow = true;
 		$myFile = fopen("../SDD/application/event/security/20160406.txt","r") or die("Unable to open file!");
-		
 		$logs = array();
 		while (!feof($myFile)) {
-			array_push($logs,fgets($myFile));
+			$textLine = fgets($myFile);
+			if($firstRow){
+				$firstRow = false;
+			}else{
+				array_push($logs, explode(",",$textLine));
+			}
+			//echo fgets($myFile);
 		}
 		fclose($myFile);
 		
