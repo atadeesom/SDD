@@ -49,12 +49,17 @@
     <script src="dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-  </body>
-		
-   <div>
-        <b>Date:</b> <?php print_r($date[0])?>
-		<br/>
-		<?php
+
+	<form action="display_application_log" method="post">
+	   <input type="text" name="date" value="<?php echo $dateCriteria ?>">
+	   <input type="submit" name="search" value="Search!">
+	</form>
+	
+	
+	<?php 
+		if(isset($searchResult)){
+			echo "<b>Date:</b>\n"; echo $dateCriteria;
+			echo "<br/>\n";
 			echo "<table border='1'>\n";
 			echo "<tr>\n";
 			echo "<td>Date</td>\n";
@@ -63,23 +68,24 @@
 			echo "<td>Session ID</td>\n";
 			echo "<td>Detail</td>\n";
 			echo "</tr>\n";
-			$row = count($logs[0]);
-			
-			for ($i = 0; $i <= ($row - 1); $i++){
+			if(isset($logs)) { 
+				$row = count($logs[0]);
+				for ($i = 0; $i <= ($row - 1); $i++){
+					echo "<tr>\n";
+					echo "<td>".$logs[0][$i][0]."</td>\n";
+					echo "<td>".$logs[0][$i][1]."</td>\n";
+					echo "<td>".$logs[0][$i][2]."</td>\n";
+					echo "<td>".$logs[0][$i][3]."</td>\n";
+					echo "<td>".$logs[0][$i][4]."</td>\n";
+					echo "</tr>\n";
+				}
+			}else { 
 				echo "<tr>\n";
-				echo "<td>".$logs[0][$i][0]."</td>\n";
-				echo "<td>".$logs[0][$i][1]."</td>\n";
-				echo "<td>".$logs[0][$i][2]."</td>\n";
-				echo "<td>".$logs[0][$i][3]."</td>\n";
-				echo "<td>".$logs[0][$i][4]."</td>\n";
+				echo "<td colspan ='5'>Search not found!!!</td>\n";
 				echo "</tr>\n";
-			}
+			} 
 			echo "</table>";
-		?>	
-        <?php
-			echo count($logs[0])."\n";
-            print_r($logs[0][0][0]);
-        ?>
-    </div>
-
+		}
+	?>
+  </body>
 </html>
