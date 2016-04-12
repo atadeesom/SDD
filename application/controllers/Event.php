@@ -27,9 +27,9 @@ class Event extends CI_Controller {
 		
 		// return data to view
 		$this->load->helper('form');
-		$this->load->view('template/header',$page_element);
-		$this->load->view('event/index',$data);
-		$this->load->view('template/footer',$data);
+		$this->load->view('template/event_header',$page_element);
+		$this->load->view('event/admin_security_log',$data);
+		$this->load->view('template/event_footer',$data);
 	}
 
 	/**
@@ -85,7 +85,6 @@ class Event extends CI_Controller {
 	}
 	
 	public function display_security_log(){
-		
 		$dateTerm = $this->input->post('date');
 		$firstRow = true;
 		$fileName = "../SDD/application/event/security/".$dateTerm.".txt";
@@ -117,9 +116,9 @@ class Event extends CI_Controller {
 		$data['dateCriteria'] = $dateTerm;
 		
 		// return data to view
-		$this->load->view('template/header',$page_element);
-		$this->load->view('event/index',$data);
-		$this->load->view('template/footer',$data);
+		$this->load->view('template/event_header',$page_element);
+		$this->load->view('event/admin_security_log',$data);
+		$this->load->view('template/event_footer',$data);
 	}
 	
 	public function display_application_log(){
@@ -155,9 +154,9 @@ class Event extends CI_Controller {
 		$data['dateCriteria'] = $dateTerm;
 		
 		// return data to view
-		$this->load->view('template/header',$page_element);
-		$this->load->view('event/index',$data);
-		$this->load->view('template/footer',$data);
+		$this->load->view('template/event_header',$page_element);
+		$this->load->view('event/admin_app_log',$data);
+		$this->load->view('template/event_footer',$data);
 	}
 	
 	/**

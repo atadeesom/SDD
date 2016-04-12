@@ -12,87 +12,71 @@
             <li class="active">Application Event Logs</li>
           </ol>
         </section>
-
-        <!-- Main content Dashboard -->
-        <section class="content">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Application Event Logs</h3>
-                  <div class="box-tools">
-                    <div class="input-group" style="width: 200px;">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search Date">
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tr>
-                      <th>Date</th>
-                      <th>User ID</th>
-                      <th>User IP</th>
-                      <th>Session ID</th>
-                      <th>Details</th>
-                    </tr>
-                    <tr>
-                      <td>11-7-2014</td>
-                      <td>John1123</td>
-                      <td>192.168.1.1</td>
-                      <td>JH1111123445SC</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>11-7-2014</td>
-                      <td>John1123</td>
-                      <td>192.168.1.1</td>
-                      <td>JH1111123445SC</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>11-7-2014</td>
-                      <td>John1123</td>
-                      <td>192.168.1.1</td>
-                      <td>JH1111123445SC</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>11-7-2014</td>
-                      <td>John1123</td>
-                      <td>192.168.1.1</td>
-                      <td>JH1111123445SC</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>11-7-2014</td>
-                      <td>John1123</td>
-                      <td>192.168.1.1</td>
-                      <td>JH1111123445SC</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>11-7-2014</td>
-                      <td>John1123</td>
-                      <td>192.168.1.1</td>
-                      <td>JH1111123445SC</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </table>
-                </div><!-- /.box-body -->
-                <div class="box-tools">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                      <li><a href="#">&laquo;</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
+		
+		<form id="securityEventLogForm" action="display_application_log" method="post">
+			<!-- Main content Dashboard -->
+			<section class="content">
+			  <div class="row">
+				<div class="col-xs-12">
+				  <div class="box">
+					<div class="box-header">
+					  <h3 class="box-title">Application Event Logs</h3>
+					  <div class="box-tools">
+						<div class="input-group" style="width: 200px;">
+						  <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search Date-(YYYYMMDD)">
+						  <div class="input-group-btn">
+							<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+						  </div>
+						</div>
+					  </div>
+					</div><!-- /.box-header -->
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover">
+							<tr>
+							  <th>Date</th>
+							  <th>User ID</th>
+							  <th>User IP</th>
+							  <th>Session ID</th>
+							  <th>Details</th>
+							</tr>
+							
+						<!-- echo "<b>Date:</b>\n"; echo $dateCriteria; -->
+						<?php 
+							if(isset($searchResult)){
+								if(isset($logs)){ 
+									$row = count($logs[0]);
+									for ($i = 0; $i <= ($row - 1); $i++){
+										echo "<tr>\n";
+										echo "<td>".$logs[0][$i][0]."</td>\n";
+										echo "<td>".$logs[0][$i][1]."</td>\n";
+										echo "<td>".$logs[0][$i][2]."</td>\n";
+										echo "<td>".$logs[0][$i][3]."</td>\n";
+										echo "<td>".$logs[0][$i][4]."</td>\n";
+										echo "</tr>\n";
+									}
+								}else{ 
+									echo "<tr>\n";
+									echo "<td colspan ='5' style='text-align:center;color:red;'>Search not found!!!</td>\n";
+									echo "</tr>\n";
+								} 
+							}
+						?>	
+					  </table>
+					</div><!-- /.box-body -->
+					
+					<!-- <div class="box-tools">
+						<ul class="pagination pagination-sm no-margin pull-right">
+						  <li><a href="#">&laquo;</a></li>
+						  <li><a href="#">1</a></li>
+						  <li><a href="#">2</a></li>
+						  <li><a href="#">3</a></li>
+						  <li><a href="#">&raquo;</a></li>
+						</ul>
+					</div> -->
+					
+				  </div><!-- /.box -->
+				</div><!-- /.col -->
+			  </div><!-- /.row -->
+			</section><!-- /.content -->
+		</form>
       </div><!-- /.content-wrapper -->
