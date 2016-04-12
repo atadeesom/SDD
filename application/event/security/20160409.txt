@@ -1,0 +1,2 @@
+datetime,user_id,user_ip,session_id,message
+20160409 10:22:01,0091,192.168.1.1,Ae40329f32,TEST

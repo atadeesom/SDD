@@ -20,11 +20,13 @@ class Event extends CI_Controller {
 	public function index()
 	{
 		// Set the page element
-		$page_element['page_title'] = "Welcome";
+		$page_element['page_title'] = "Event";
 		$page_element['method_name'] = "Index";
 		$data['title'] = 'Event list';
+		$data['dateCriteria'] = '';
 		
 		// return data to view
+		$this->load->helper('form');
 		$this->load->view('template/header',$page_element);
 		$this->load->view('event/index',$data);
 		$this->load->view('template/footer',$data);
@@ -77,27 +79,85 @@ class Event extends CI_Controller {
 				{
 					// response error 
 					$respo['status_code'] = 404;
-					$respo['status_massage'] = 'Internal Error: Unable to write file content';
-					echo json_encode($respo);
-					exit();// throw from this execution
 				}
 			}
-
-			// Append data into new line.
-			$line = $this->newline.$datetime.",".$user_id.",".$user_ip.",".$session_id.",".$message;
-			if(!write_file($path, $line , "a+"))
-			{
-				$respo['status_code'] = 404;
-				$respo['status_massage'] = 'Internal Error: Unable to write file content';
-				echo json_encode($respo);
-				exit(); //throw from this execution
-			}
-			echo json_encode($respo);
-		}else {
-			$respo['status_code'] = 400;
-			$respo['status_massage'] = 'Bad Request: Parameter is not enough.';
-			echo json_encode($respo);
 		}
+	}
+	
+	public function display_security_log(){
+		
+		$dateTerm = $this->input->post('date');
+		$firstRow = true;
+		$fileName = "../SDD/application/event/security/".$dateTerm.".txt";
+		
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			$logs = array();
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				if($firstRow){
+					$firstRow = false;
+				}else{
+					array_push($logs, explode(",",$textLine));
+				}
+				//echo fgets($myFile);
+			}
+			fclose($myFile);
+			
+			$data['searchResult'] = 'YES';
+			$data['logs'] = array();
+			array_push($data['logs'],$logs);
+		}else{
+			$data['searchResult'] = 'YES';
+		}
+		// Set the page element
+		$page_element['page_title'] = "Event";
+		$page_element['method_name'] = "index";
+		
+		$data['dateCriteria'] = $dateTerm;
+		
+		// return data to view
+		$this->load->view('template/header',$page_element);
+		$this->load->view('event/index',$data);
+		$this->load->view('template/footer',$data);
+	}
+	
+	public function display_application_log(){
+		
+		$dateTerm = $this->input->post('date');
+		$firstRow = true;
+		$fileName = "../SDD/application/event/application/".$dateTerm.".txt";
+		
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			$logs = array();
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				if($firstRow){
+					$firstRow = false;
+				}else{
+					array_push($logs, explode(",",$textLine));
+				}
+				//echo fgets($myFile);
+			}
+			fclose($myFile);
+			
+			$data['searchResult'] = 'YES';
+			$data['logs'] = array();
+			array_push($data['logs'],$logs);
+		}else{
+			$data['searchResult'] = 'YES';
+		}
+		// Set the page element
+		$page_element['page_title'] = "Event";
+		$page_element['method_name'] = "index";
+		
+		$data['dateCriteria'] = $dateTerm;
+		
+		// return data to view
+		$this->load->view('template/header',$page_element);
+		$this->load->view('event/index',$data);
+		$this->load->view('template/footer',$data);
 	}
 	
 	/**
