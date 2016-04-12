@@ -3,23 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lecturer | Dashboard</title>
+    <title>Lecturer | Event Logs</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('styles/bootstrap/css/bootstrap.min.css')?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="styles/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet" href="<?php echo base_url('styles/plugins/jvectormap/jquery-jvectormap-1.2.2.css')?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="styles/dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="styles/dist/css/skins/_all-skins.min.css">
-
+    <link rel="stylesheet" href="<?php echo base_url('styles/dist/css/AdminLTE.min.css')?>">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<?php echo base_url('styles/dist/css/skins/_all-skins.min.css')?>">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,15 +27,14 @@
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="teacher_dash.php" class="logo">
+        <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>LC</b>V</span>
+          <span class="logo-mini"><b>EV</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Lecturer</b>View</span>
+          <span class="logo-lg"><b>Event</b>View</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -93,15 +90,15 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="styles/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Noraset</span>
+                  <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs">Alexander Magmai</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="styles/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Noraset - Lecturer
+                      Alexander Magmai - Administrator
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -127,10 +124,10 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="styles/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Noraset</p>
+              <p>Alexander Magmai</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -147,7 +144,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-dashboard"></i><span>Dashboard</span>
               </a>
@@ -156,18 +153,22 @@
               <a href="#">
                 <i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                   <ul class="treeview-menu">
-                    <li><a href="styles/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Each Student</a></li>
-                    <li><a href="styles/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Each Section</a></li>
-                    <li><a href="styles/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Each Class</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Each Student</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Each Section</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Each Class</a></li>
                   </ul>
               </a>
             </li>
-            <li class="treeview">
+            <li class="active treeview">
               <a href="#">
-                <i class="fa fa-laptop"></i><span>Event Log</span>
+                <i class="fa fa-laptop"></i><span>Event Log</span><i class="fa fa-angle-left pull-right"></i>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Application</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Security</a></li>
+                </ul>
               </a>
             </li>
-            <li><a href="styles/documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+            <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
           </ul>
         </section>
         <!-- /.sidebar -->
