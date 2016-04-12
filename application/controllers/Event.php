@@ -84,11 +84,49 @@ class Event extends CI_Controller {
 		}
 	}
 	
-	public function display_application_log(){
+	public function display_security_log(){
 		
 		$dateTerm = $this->input->post('date');
 		$firstRow = true;
 		$fileName = "../SDD/application/event/security/".$dateTerm.".txt";
+		
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			$logs = array();
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				if($firstRow){
+					$firstRow = false;
+				}else{
+					array_push($logs, explode(",",$textLine));
+				}
+				//echo fgets($myFile);
+			}
+			fclose($myFile);
+			
+			$data['searchResult'] = 'YES';
+			$data['logs'] = array();
+			array_push($data['logs'],$logs);
+		}else{
+			$data['searchResult'] = 'YES';
+		}
+		// Set the page element
+		$page_element['page_title'] = "Event";
+		$page_element['method_name'] = "index";
+		
+		$data['dateCriteria'] = $dateTerm;
+		
+		// return data to view
+		$this->load->view('template/header',$page_element);
+		$this->load->view('event/index',$data);
+		$this->load->view('template/footer',$data);
+	}
+	
+	public function display_application_log(){
+		
+		$dateTerm = $this->input->post('date');
+		$firstRow = true;
+		$fileName = "../SDD/application/event/application/".$dateTerm.".txt";
 		
 		if(file_exists($fileName)){
 			$myFile = fopen($fileName,"r") or die("Unable to open file!");
