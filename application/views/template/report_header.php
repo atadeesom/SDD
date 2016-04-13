@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Administrator | Event Logs</title>
+    <title>Lecturer | Reports</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -24,6 +24,18 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery 2.1.4 -->
+    <script src="<?php echo base_url('styles/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
+    <!-- FLOT CHARTS -->
+    <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.min.js')?>"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.resize.min.js')?>"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.pie.min.js')?>"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.categories.min.js')?>"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.resize.min.js')?>"></script>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -32,9 +44,9 @@
         <!-- Logo -->
         <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>EV</b>V</span>
+          <span class="logo-mini"><b>RE</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Event</b>View</span>
+          <span class="logo-lg"><b>Report</b>View</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -91,14 +103,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Magmai</span>
+                  <span class="hidden-xs">Alexander Soft</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Magmai - Administrator
+                      Alexander Soft - Lecturer
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -149,7 +161,7 @@
                 <i class="fa fa-dashboard"></i><span>Dashboard</span>
               </a>
             </li>
-            <li class="treeview">
+            <li class="active treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                   <ul class="treeview-menu">
@@ -159,7 +171,7 @@
                   </ul>
               </a>
             </li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i><span>Event Log</span><i class="fa fa-angle-left pull-right"></i>
                 <ul class="treeview-menu">

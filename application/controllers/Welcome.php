@@ -30,9 +30,9 @@ class Welcome extends CI_Controller {
 		$data['title'] = 'Welcome';
 		
 		// return data to view
-		$this->load->view('template/event_header',$page_element);
-		$this->load->view('event/admin_security_log',$data);
-		$this->load->view('template/event_footer',$data);
+		$this->load->view('template/report_header',$page_element);
+		$this->load->view('report/teacher_report_class',$data);
+		$this->load->view('template/report_footer',$data);
 	}
 
 	/**
