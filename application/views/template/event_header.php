@@ -163,8 +163,8 @@
               <a href="#">
                 <i class="fa fa-laptop"></i><span>Event Log</span><i class="fa fa-angle-left pull-right"></i>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('../SDD/index.php/event/')?>"><i class="fa fa-circle-o"></i> Application</a></li>
-                    <li><a href="<?php echo base_url('../SDD/index.php/event/')?>"><i class="fa fa-circle-o"></i> Security</a></li>
+                    <li><a href="<?php echo base_url('/index.php/Event/display_application_log.html')?>"><i class="fa fa-circle-o"></i> Application</a></li>
+                    <li><a href="<?php echo base_url('/index.php/Event/display_security_log.html')?>"><i class="fa fa-circle-o"></i> Security</a></li>
                 </ul>
               </a>
             </li>

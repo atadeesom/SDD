@@ -13,7 +13,7 @@
           </ol>
         </section>
 		
-		<form id="securityEventLogForm" action="display_security_log" method="post">
+		<form id="securityEventLogForm" action="display_security_log.html" method="post">
 			<!-- Main content Dashboard -->
 			<section class="content">
 			  <div class="row">

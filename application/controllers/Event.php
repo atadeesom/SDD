@@ -84,10 +84,13 @@ class Event extends CI_Controller {
 		}
 	}
 	
+	/**
+	 * display_security_log will get date from admin then return list of usage to view.
+	 */
 	public function display_security_log(){
 		$dateTerm = $this->input->post('date');
 		$firstRow = true;
-		$fileName = "../SDD/application/event/security/".$dateTerm.".txt";
+		$fileName = FCPATH."application/event/security/".$dateTerm.".txt";
 		
 		if(file_exists($fileName)){
 			$myFile = fopen($fileName,"r") or die("Unable to open file!");
@@ -116,17 +119,21 @@ class Event extends CI_Controller {
 		$data['dateCriteria'] = $dateTerm;
 		
 		// return data to view
+		$this->load->helper('form');
 		$this->load->view('template/event_header',$page_element);
 		$this->load->view('event/admin_security_log',$data);
 		$this->load->view('template/event_footer',$data);
 	}
 	
+	/**
+	 * display_application_log will get date from admin then return list of usage to view.
+	 */
 	public function display_application_log(){
 		
 		$dateTerm = $this->input->post('date');
 		$firstRow = true;
-		$fileName = "../SDD/application/event/application/".$dateTerm.".txt";
-		
+		$fileName = FCPATH."application/event/application/".$dateTerm.".txt";
+
 		if(file_exists($fileName)){
 			$myFile = fopen($fileName,"r") or die("Unable to open file!");
 			$logs = array();
@@ -154,6 +161,7 @@ class Event extends CI_Controller {
 		$data['dateCriteria'] = $dateTerm;
 		
 		// return data to view
+		$this->load->helper('form');
 		$this->load->view('template/event_header',$page_element);
 		$this->load->view('event/admin_app_log',$data);
 		$this->load->view('template/event_footer',$data);
