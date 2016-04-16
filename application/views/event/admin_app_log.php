@@ -14,6 +14,7 @@
         </section>
 		
 		<form id="securityEventLogForm" action="display_application_log.html" method="post">
+			<input name="initailFlag" type="hidden" value="<? echo $initailFlag; ?>" />
 			<!-- Main content Dashboard -->
 			<section class="content">
 			  <div class="row">

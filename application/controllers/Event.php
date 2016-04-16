@@ -89,6 +89,13 @@ class Event extends CI_Controller {
 	 */
 	public function display_security_log(){
 		$dateTerm = $this->input->post('date');
+		
+		$initailFlag = $this->input->post('initailFlag');
+		if(null == $initailFlag || false == $initailFlag){
+			$dateTerm = date("Ymd");
+			$initailFlag = true;
+		}
+		
 		$firstRow = true;
 		$fileName = FCPATH."application/event/security/".$dateTerm.".txt";
 		
@@ -132,6 +139,13 @@ class Event extends CI_Controller {
 		
 		$dateTerm = $this->input->post('date');
 		$firstRow = true;
+		
+		$initailFlag = $this->input->post('initailFlag');
+		if(empty($initailFlag)){
+			$dateTerm = date("Ymd");
+			$initailFlag = "TRUE";
+		}
+		
 		$fileName = FCPATH."application/event/application/".$dateTerm.".txt";
 
 		if(file_exists($fileName)){
@@ -159,6 +173,7 @@ class Event extends CI_Controller {
 		$page_element['method_name'] = "index";
 		
 		$data['dateCriteria'] = $dateTerm;
+		$data['initailFlag'] = $initailFlag;
 		
 		// return data to view
 		$this->load->helper('form');
