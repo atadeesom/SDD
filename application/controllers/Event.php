@@ -11,6 +11,7 @@ class Event extends CI_Controller {
 	private $file_extension = ".txt";
 	private $file_header_security = 'datetime,user_id,user_ip,session_id,message';
 	private $file_header_application = 'datetime,user_id,user_ip,session_id,message';
+	private $file_header_stroke = 'datetime,message';
 	private $newline = "\r\n";
 	
 	/**
@@ -253,6 +254,90 @@ class Event extends CI_Controller {
 			$resp['status_massage'] = 'Bad Request: Parameter is not enough.';
 			echo json_encode($resp);
 		}
+	}
+	
+	/**
+	 * This method create a new log file if this is no current date file in directory
+	 * Append the new record if the file existed.
+	 * example of JSON
+	 * {"studentId":"5870948021",
+	 *  "courseId":"XXX",
+	 *  "assigmentId":"YYY",
+	 *  "keystroke":[{
+	 *		"start": {"row": 0, "coloum": 0},
+	 *		"end": {"row": 0, "coloum": 1},
+	 *		"action": "remove",
+	 *		"lines": ["s"]
+	 *	 },{
+	 *		"start": {"row": 0, "coloum": 0},
+	 *		"end": {"row": 0, "coloum": 1},
+	 *		"action": "remove",
+	 *		"lines": ["t"]
+	 *	 }]
+	 * }
+	 * example of output JSON
+	 * {"status_code":"200","status_massage":"success"}
+	 */
+	public function write_keystroke_log(){
+		//$studentId = $this->input->post('studentId');
+		//$courseId = $this->input->post('courseId');
+		//$assignmentId = $this->input->post('assignmentId');
+		//$keystroke = $this->input->post('keystroke');
 		
+		//response result
+		$resp['status_code'] = 200;
+		$resp['status_message'] = 'success';
+		
+		/*
+		* For Test
+		*/
+		$datetime = date('Ymd H:i:s');
+		$studentId = '520510801';
+		$courseId = '204111';
+		$assignmentId = 'HW01';
+		$keystroke = '[{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["s"]
+	 	 },{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["t"]
+	 	 }]';
+		 
+		 // Check empty element. Element must fill
+		if(!(empty($datetime) and empty($studentId) and empty($courseId) and empty($assignmentId) and empty($keystroke))){
+			$path = FCPATH.'application/event/keystroke/'.$studentId.'_'.$courseId.'_'.$assignmentId.$this->file_extension;
+			
+			// Check current date file exists
+			$hasCurrentDateFile = file_exists($path);
+			
+			// if file not exists
+			if(!$hasCurrentDateFile){
+				// create new file 
+				if (!file_put_contents ($path, $this->file_header_stroke)){
+					// response error 
+					$resp['status_code'] = 404;
+					$resp['status_massage'] = 'Internal Error: Unable to write file content';
+					echo json_encode($resp);
+					exit();// throw from this execution
+				}
+			}
+			// Append data into new line.
+			$line = $this->newline.$datetime.",".$keystroke;
+			if(!write_file($path, $line , "a+")){
+				$resp['status_code'] = 404;
+				$resp['status_massage'] = 'Internal Error: Unable to write file content';
+				echo json_encode($resp);
+				exit(); //throw from this execution
+			}
+			echo json_encode($resp);
+		}else{
+			$resp['status_code'] = 400;
+			$resp['status_massage'] = 'Bad Request: Parameter is not enough.';
+			echo json_encode($resp);
+		}
 	}
 }
