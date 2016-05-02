@@ -43,7 +43,7 @@ class Report extends CI_Controller{
 		$data['title'] = 'Report';
 		$data['classes_list'] = array();
 		
-		$fileName = FCPATH."application/master/class.txt";
+		$fileName = FCPATH."application/master/course.txt";
 		
 		if(file_exists($fileName)){
 			$myFile = fopen($fileName,"r") or die("Unable to open file!");
