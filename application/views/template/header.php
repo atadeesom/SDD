@@ -146,7 +146,7 @@
                         <ul class="sidebar-menu">
                         	<li class="header">MAIN NAVIGATION</li>
                         	<li class="<?php if($nav_deshboard_active) echo 'active';?> treeview">
-                                <a href="#">
+                                <a href="<?php echo site_url('Dashboard/index')?>">
                                 	<i class="fa fa-dashboard"></i>
                                 	<span>Dashboard</span>
                                 </a>

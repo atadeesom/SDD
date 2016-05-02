@@ -32,20 +32,10 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <div class="social-auth-links text-center">
-        <p>Dashboard</p>
-        	<a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Administrator Dash Board</a>
-          <a href="<?php echo site_url('Dashboard/index/21');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Student Dash Board</a>
-          <a href="<?php echo site_url('Dashboard/index/11');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Lecturer Dash Board</a>
-        <p>Report</p>
-          <a href="<?php echo site_url('Report/index')?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Lecturer Report Console</a>
-        <p>Log</p>
-          <a href="<?php echo site_url('Event/display_application_log');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Application Log Console</a>
-          <a href="<?php echo site_url('Event/display_security_log');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Security Log Console</a>
-        </div><!-- /.social-auth-links -->
-
-        <a href="#">I forgot my password</a><br>
-        <a href="#" class="text-center">Register a new membership</a>
-
+        	<a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Administrator</a>
+          <a href="<?php echo site_url('Dashboard/index/21');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Student</a>
+          <a href="<?php echo site_url('Dashboard/index/11');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Lecturer</a>
+		<!-- /.social-auth-links -->
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
     <!-- jQuery 2.1.4 -->
