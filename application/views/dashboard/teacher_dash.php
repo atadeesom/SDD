@@ -50,10 +50,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
                     <li><a href="#">Students <span class="pull-right badge bg-maroon">15/30</span></a></li>
-                    <li><a href="#">Lessons <span class="pull-right badge bg-blue">9</span></a></li>
-                    <li><a href="#">Documents <span class="pull-right badge bg-yellor">19</span></a></li>
                     <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Projects <span class="pull-right badge bg-green">2</span></a></li>
                     <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
                   </ul>
                 </div>
@@ -71,10 +68,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
                     <li><a href="#">Students <span class="pull-right badge bg-maroon">15/30</span></a></li>
-                    <li><a href="#">Lessons <span class="pull-right badge bg-blue">9</span></a></li>
-                    <li><a href="#">Documents <span class="pull-right badge bg-yellor">19</span></a></li>
                     <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Projects <span class="pull-right badge bg-green">2</span></a></li>
                     <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
                   </ul>
                 </div>
@@ -92,10 +86,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
                     <li><a href="#">Students <span class="pull-right badge bg-maroon">15/30</span></a></li>
-                    <li><a href="#">Lessons <span class="pull-right badge bg-blue">9</span></a></li>
-                    <li><a href="#">Documents <span class="pull-right badge bg-yellor">19</span></a></li>
                     <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Projects <span class="pull-right badge bg-green">2</span></a></li>
                     <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
                   </ul>
                 </div>
@@ -113,10 +104,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
                     <li><a href="#">Students <span class="pull-right badge bg-maroon">15/30</span></a></li>
-                    <li><a href="#">Lessons <span class="pull-right badge bg-blue">9</span></a></li>
-                    <li><a href="#">Documents <span class="pull-right badge bg-yellor">19</span></a></li>
                     <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Projects <span class="pull-right badge bg-green">2</span></a></li>
                     <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
                   </ul>
                 </div>
@@ -134,10 +122,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
                     <li><a href="#">Students <span class="pull-right badge bg-maroon">15/30</span></a></li>
-                    <li><a href="#">Lessons <span class="pull-right badge bg-blue">9</span></a></li>
-                    <li><a href="#">Documents <span class="pull-right badge bg-yellor">19</span></a></li>
                     <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Projects <span class="pull-right badge bg-green">2</span></a></li>
                     <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
                   </ul>
                 </div>
@@ -155,10 +140,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
                     <li><a href="#">Students <span class="pull-right badge bg-maroon">15/30</span></a></li>
-                    <li><a href="#">Lessons <span class="pull-right badge bg-blue">9</span></a></li>
-                    <li><a href="#">Documents <span class="pull-right badge bg-yellor">19</span></a></li>
                     <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Projects <span class="pull-right badge bg-green">2</span></a></li>
                     <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
                   </ul>
                 </div>
