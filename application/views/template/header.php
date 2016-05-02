@@ -171,7 +171,6 @@
                                     </ul>
                               	</a>
                             </li>
-                        	<li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
                         </ul>
         			</section>
         		</aside>
