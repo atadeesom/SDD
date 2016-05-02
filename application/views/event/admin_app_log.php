@@ -24,7 +24,7 @@
 					  <h3 class="box-title">Application Event Logs</h3>
 					  <div class="box-tools">
 						<div class="input-group" style="width: 200px;">
-						  <input type="text" name="date" class="form-control input-sm pull-right" placeholder="Search Date-(YYYYMMDD)">
+						  <input type="text" name="date" class="form-control input-sm pull-right" placeholder="Search Date-(YYYYMMDD)" value="<?php echo $dateCriteria; ?>">
 						  <div class="input-group-btn">
 							<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
 						  </div>
