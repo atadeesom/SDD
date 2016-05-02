@@ -3,13 +3,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Class Report
+            Course Report
             <small>Version 2.0</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-files-o"></i> Report</a></li>
-            <li class="active">Each Class</li>
+            <li class="active">Course</li>
           </ol>
         </section>
 
@@ -26,12 +26,12 @@
                 <form role="form">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="ClassID">Class ID</label>
-                      <input type="ClassID" class="form-control" id="ClassID" placeholder="Enter Class ID">
-                    </div>
-                    <div class="form-group">
-                      <label for="ClassName">Class Name</label>
-                      <input type="ClassName" class="form-control" id="ClassName" placeholder="Enter Class Name">
+                      <label>Select Course</label>
+                      <select class="form-control">
+                        <option valuse="####">Select Course</option>
+                        <option valuse="A111">Funde Bla Bla1</option>
+                        <option valuse="A112">Funde Bla Bla2</option>
+                      </select>
                     </div>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
@@ -41,6 +41,22 @@
                 </form>
               </div><!-- /.box -->
             </div><!-- /.col -->
+            <div class="col-md-6">
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <i class="fa fa-child"></i>
+                  <h3 class="box-title">Funde Bla Bla1</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <dl class="dl-horizontal">
+                    <dt>Course Name</dt>
+                    <dd>Funde Bla Bla1</dd>
+                    <dt>Lecturer Name</dt>
+                    <dd>Alexander Soft</dd>
+                  </dl>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
             <div class="col-md-6">
               <div class="box">
                 <div class="box-header with-border">
