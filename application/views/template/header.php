@@ -92,25 +92,15 @@
                   				<li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                       <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="user-image" alt="User Image">
-                                      <span class="hidden-xs">Alexander Magmai</span>
+                                      <span class="hidden-xs"><?php echo $user_full_name; ?></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- User image -->
                                         <li class="user-header">
                                             <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
                                             <p>
-                                              Alexander Magmai - Administrator
-                                              <small>Member since Nov. 2012</small>
+                                              <?php echo $user_full_name; ?> - <?php echo $user_role; ?>
                                             </p>
-                                        </li>
-                                        <!-- Menu Footer-->
-                                        <li class="user-footer">
-                                            <div class="pull-left">
-                                            	<a href="#" class="btn btn-default btn-flat">Profile</a>
-                                            </div>
-                                            <div class="pull-right">
-                                            	<a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                            </div>
                                         </li>
                                     </ul>
                             	</li>
@@ -128,7 +118,7 @@
                           		<img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
                             </div>
                             <div class="pull-left info">
-                            	<p>Alexander Magmai</p>
+                            	<p><?php echo $user_full_name; ?></p>
                             	<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
         				</div>
@@ -155,8 +145,8 @@
                                 <a href="#">
                                 	<i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                                     <ul class="treeview-menu">
-                                        <li class="<?php if($nav_report_student_active) echo 'active'; ?>"><a href="#"><i class="fa fa-circle-o"></i>Student</a></li>
-                                        <li class="<?php if($nav_report_course_active) echo 'active'; ?>"><a href="#"><i class="fa fa-circle-o"></i>Course</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i>Student</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i>Course</a></li>
                                     </ul>
                                 </a>
                             </li>
