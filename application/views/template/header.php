@@ -24,6 +24,20 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        
+        <!-- jQuery 2.1.4 -->
+        <script src="<?php echo base_url('styles/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
+        <!-- FLOT CHARTS -->
+        <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.min.js')?>"></script>
+        <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+        <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.resize.min.js')?>"></script>
+        <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+        <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.pie.min.js')?>"></script>
+        <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+        <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.categories.min.js')?>"></script>
+        <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+        <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.resize.min.js')?>"></script>
+        
         <body class="hold-transition skin-blue sidebar-mini">
         	<div class="wrapper">
         		<header class="main-header">
