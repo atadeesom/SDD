@@ -92,25 +92,15 @@
                   				<li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                       <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="user-image" alt="User Image">
-                                      <span class="hidden-xs">Alexander Magmai</span>
+                                      <span class="hidden-xs"><?php echo $user_full_name; ?></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- User image -->
                                         <li class="user-header">
                                             <img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
                                             <p>
-                                              Alexander Magmai - Administrator
-                                              <small>Member since Nov. 2012</small>
+                                              <?php echo $user_full_name; ?> - <?php echo $user_role; ?>
                                             </p>
-                                        </li>
-                                        <!-- Menu Footer-->
-                                        <li class="user-footer">
-                                            <div class="pull-left">
-                                            	<a href="#" class="btn btn-default btn-flat">Profile</a>
-                                            </div>
-                                            <div class="pull-right">
-                                            	<a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                            </div>
                                         </li>
                                     </ul>
                             	</li>
@@ -128,7 +118,7 @@
                           		<img src="<?php echo base_url('styles/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
                             </div>
                             <div class="pull-left info">
-                            	<p>Alexander Magmai</p>
+                            	<p><?php echo $user_full_name; ?></p>
                             	<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
         				</div>
@@ -146,21 +136,21 @@
                         <ul class="sidebar-menu">
                         	<li class="header">MAIN NAVIGATION</li>
                         	<li class="<?php if($nav_deshboard_active) echo 'active';?> treeview">
-                                <a href="#">
+                                <a href="<?php echo site_url('Dashboard/index')?>">
                                 	<i class="fa fa-dashboard"></i>
                                 	<span>Dashboard</span>
                                 </a>
                             </li>
-                            <li class="<?php if($nav_report_active) echo 'active';?> treeview">
+                            <li class="<?php if($nav_report_active) echo 'active';?> treeview <?php if($this->session->userdata('u_role') != '02') echo 'hide'; ?>">
                                 <a href="#">
                                 	<i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                                     <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-o"></i>Student</a></li>
-                                        <li><a href="#"><i class="fa fa-circle-o"></i>Course</a></li>
+                                        <li><a href="<?php echo site_url('Report/display_student_report'); ?>"><i class="fa fa-circle-o"></i>Student</a></li>
+                                        <li><a href="<?php echo site_url('Report/display_class_report'); ?>"><i class="fa fa-circle-o"></i>Course</a></li>
                                     </ul>
                                 </a>
                             </li>
-                            <li class="<?php if($nav_event_active) echo 'active';?> treeview">
+                            <li class="<?php if($nav_event_active) echo 'active';?> treeview <?php if($this->session->userdata('u_role') != '01') echo 'hide'; ?>">
                             	<a href="#">
                                		<i class="fa fa-laptop"></i>
                                		<span>Event Log</span>

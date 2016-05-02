@@ -3,59 +3,29 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Course Report
+            Dashboard
             <small>Version 2.0</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#"><i class="fa fa-files-o"></i> Report</a></li>
-            <li class="active">Course</li>
+            <li class="active">Dashboard</li>
           </ol>
         </section>
 
         <!-- Main content Dashboard -->
         <section class="content">
         <div class="row">
-            <div class="col-md-6">
-              <!-- general Quick Search form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Quick Search</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form role="form">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label>Select Course</label>
-                      <select class="form-control">
-                        <option valuse="####">Select Course</option>
-                        <option valuse="A111">Funde Bla Bla1</option>
-                        <option valuse="A112">Funde Bla Bla2</option>
-                      </select>
-                    </div>
-                  </div><!-- /.box-body -->
-                  <div class="box-footer">
-                    <button class="btn bg-blue btn-flat btn-block" type="submit">Search</button>
-                    <button class="btn bg-maroon btn-flat btn-block" type="clear">Clear</button>
-                  </div>
-                </form>
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <i class="fa fa-child"></i>
-                  <h3 class="box-title">Funde Bla Bla1</h3>
+                  <i class="fa fa-group"></i>
+                  <h3 class="box-title">SDD1111C</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <dl class="dl-horizontal">
-                    <dt>Course Name</dt>
-                    <dd>Funde Bla Bla1</dd>
-                    <dt>Lecturer Name</dt>
-                    <dd>Alexander Soft</dd>
-                  </dl>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
+                  <p class="lead"><h4>Software Design and Develop</h4></p>
+                  <p class="text-aqua">Semester 1/2016</p>
+                </div>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="box">
@@ -78,7 +48,7 @@
                 </div>
               </div>
             </div>
-        </div><!-- /.row -->
+        </div>
         </section><!-- /.content -->
         <section class="content">
           <!-- Info boxes -->
@@ -88,7 +58,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Assignment Score</h3>
+                  <h3 class="box-title">My Assignment Score</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -104,7 +74,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Exam Score</h3>
+                  <h3 class="box-title">My Exam Score</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>

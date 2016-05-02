@@ -25,8 +25,19 @@ class Event extends CI_Controller {
 	    $page_element['nav_deshboard_active'] = false;
 	    $page_element['nav_event_active'] = true;
 	     
+	    //other page
+	    $page_element['nav_report_student_active'] = false;
+	    $page_element['nav_report_course_active'] = false;
+	    
 	    $page_element['screenName'] = 'Event';
-	     
+	    
+	    // set user variable
+	    $uid = $this->session->userdata('uid');
+	    if($uid != null){
+	    	$page_element['user_full_name'] = $this->session->userdata('full_name');
+	    	$uRole = $this->session->userdata('u_role');
+	    	$page_element['user_role'] = $uRole == '01' ? 'Administrator' : $uRole == '02' ? 'Teacher' : 'Student';
+	    }
 	    return $page_element;
 	}
 	

@@ -7,17 +7,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 class Report extends CI_Controller{
+    
+    private function setDataReturnToView(){
+        // Set the page element
+        $page_element['page_title'] = "Report";
+        $page_element['method_name'] = "index";
+    
+        $page_element['nav_report_active'] = true;
+        $page_element['nav_deshboard_active'] = false;
+        $page_element['nav_event_active'] = false;
+        
+        //set other page
+        $page_element['nav_event_security_active'] = false;
+        $page_element['nav_event_application_active'] = false;
+    
+        $page_element['screenName'] = 'Report';
+        
+        // set user variable
+        $uid = $this->session->userdata('uid');
+        if($uid != null){
+        	$page_element['user_full_name'] = $this->session->userdata('full_name');
+        	$uRole = $this->session->userdata('u_role');
+        	$page_element['user_role'] = $uRole == '01' ? 'Administrator' : $uRole == '02' ? 'Teacher' : 'Student';
+        		
+        }
+    
+        return $page_element;
+    }
+    
 	public function index()
 	{
 		// Set the page element
-		$page_element['page_title'] = "Report";
-		$page_element['method_name'] = "Index";
 		$data['title'] = 'Report';
 		
 		// return data to view
-		$this->load->view('template/report_header',$page_element);
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_report_student_active'] = false;
+		$page_element['nav_report_course_active'] = false;
+		
+		$this->load->view('template/header',$page_element);
 		$this->load->view('report/teacher_report_class',$data);
-		$this->load->view('template/report_footer',$data);
+		$this->load->view('template/footer',$data);
 	}
 	
 	/**
@@ -27,6 +57,15 @@ class Report extends CI_Controller{
 	 */
 	public function display_class_report(){
 		//TODO: implement function and return data to view.
+		
+	    $page_element = $this->setDataReturnToView();
+	    $page_element['nav_report_student_active'] = false;
+	    $page_element['nav_report_course_active'] = true;
+	    $data = array();
+	    // return data to view
+	    $this->load->view('template/header',$page_element);
+	    $this->load->view('report/teacher_report_student',$data);
+	    $this->load->view('template/footer',$data);
 	}
 
 	
@@ -108,6 +147,7 @@ class Report extends CI_Controller{
 		$this->load->view('report/teacher_report_student',$data);
 		$this->load->view('template/report_footer',$data);
 	}
+	
 	public function display_student_report_Search(){
 		//Search Data
 		$sid = $this->input->post('studentId');
