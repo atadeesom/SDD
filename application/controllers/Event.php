@@ -14,6 +14,22 @@ class Event extends CI_Controller {
 	private $file_header_stroke = 'datetime,message';
 	private $newline = "\r\n";
 	
+	private $currentDate = "";
+	
+	private function setDataReturnToView(){
+	    // Set the page element
+	    $page_element['page_title'] = "Event";
+	    $page_element['method_name'] = "index";
+	     
+	    $page_element['nav_report_active'] = false;
+	    $page_element['nav_deshboard_active'] = false;
+	    $page_element['nav_event_active'] = true;
+	     
+	    $page_element['screenName'] = 'Event';
+	     
+	    return $page_element;
+	}
+	
 	/**
 	 * This method uses for displaying Event Homepage.
 	 * The homepage will get all data seperate by date of records.
@@ -24,13 +40,20 @@ class Event extends CI_Controller {
 		$page_element['page_title'] = "Event";
 		$page_element['method_name'] = "Index";
 		$data['title'] = 'Event list';
-		$data['dateCriteria'] = '';
+		
+		$page_element['nav_report_active'] = false;
+		$page_element['nav_deshboard_active'] = false;
+		$page_element['nav_event_active'] = true;
+		
+		$page_element['screenName'] = 'Event';
+		$page_element['dateCriteria'] = '';
 		
 		// return data to view
 		$this->load->helper('form');
-		$this->load->view('template/event_header',$page_element);
+		$this->load->view('template/header',$page_element);
 		$this->load->view('event/admin_security_log',$data);
-		$this->load->view('template/event_footer',$data);
+		$this->load->view('template/footer',$data);
+		
 	}
 
 	/**
@@ -120,17 +143,19 @@ class Event extends CI_Controller {
 		}else{
 			$data['searchResult'] = 'YES';
 		}
-		// Set the page element
-		$page_element['page_title'] = "Event";
-		$page_element['method_name'] = "index";
 		
 		$data['dateCriteria'] = $dateTerm;
+		$data['initailFlag'] = $initailFlag;
+
+        $page_element = $this->setDataReturnToView();		
+		$page_element['nav_event_security_active'] = true;
+		$page_element['nav_event_application_active'] = false;
 		
 		// return data to view
 		$this->load->helper('form');
-		$this->load->view('template/event_header',$page_element);
+		$this->load->view('template/header',$page_element);
 		$this->load->view('event/admin_security_log',$data);
-		$this->load->view('template/event_footer',$data);
+		$this->load->view('template/footer',$data);
 	}
 	
 	/**
@@ -142,9 +167,9 @@ class Event extends CI_Controller {
 		$firstRow = true;
 		
 		$initailFlag = $this->input->post('initailFlag');
-		if(empty($initailFlag)){
+		if(null == $initailFlag || false == $initailFlag){
 			$dateTerm = date("Ymd");
-			$initailFlag = "TRUE";
+			$initailFlag = true;
 		}
 		
 		$fileName = FCPATH."application/event/application/".$dateTerm.".txt";
@@ -169,20 +194,19 @@ class Event extends CI_Controller {
 		}else{
 			$data['searchResult'] = 'YES';
 		}
-		// Set the page element
-		$page_element['page_title'] = "Event";
-		$page_element['method_name'] = "index";
-		$page_element['nav_report_active'] = false;
-		$page_element['nav_event_active'] = true;
 		
 		$data['dateCriteria'] = $dateTerm;
 		$data['initailFlag'] = $initailFlag;
 		
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_event_security_active'] = false;
+		$page_element['nav_event_application_active'] = true;
+		
 		// return data to view
 		$this->load->helper('form');
-		$this->load->view('template/event_header',$page_element);
+		$this->load->view('template/header',$page_element);
 		$this->load->view('event/admin_app_log',$data);
-		$this->load->view('template/event_footer',$data);
+		$this->load->view('template/footer',$data);
 	}
 	
 	/**

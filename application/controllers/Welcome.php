@@ -30,9 +30,15 @@ class Welcome extends CI_Controller {
 		$data['title'] = 'Welcome';
 		
 		// return data to view
-		$this->load->view('template/dashboard_header',$page_element);
+		$page_element['nav_report_active'] = false;
+		$page_element['nav_deshboard_active'] = true;
+		$page_element['nav_event_active'] = false;
+		
+		$page_element['screenName'] = 'Lecturer';
+		
+		$this->load->view('template/header',$page_element);
 		$this->load->view('dashboard/teacher_dash_class',$data);
-		$this->load->view('template/dashboard_footer',$data);
+		$this->load->view('template/footer',$data);
 	}
 
 	/**
