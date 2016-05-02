@@ -16,8 +16,12 @@ class Report extends CI_Controller{
         $page_element['nav_report_active'] = true;
         $page_element['nav_deshboard_active'] = false;
         $page_element['nav_event_active'] = false;
+        
+        //set other page
+        $page_element['nav_event_security_active'] = false;
+        $page_element['nav_event_application_active'] = false;
     
-        $page_element['screenName'] = 'Course';
+        $page_element['screenName'] = 'Report';
     
         return $page_element;
     }
@@ -25,11 +29,13 @@ class Report extends CI_Controller{
 	public function index()
 	{
 		// Set the page element
-		$page_element['page_title'] = "Report";
-		$page_element['method_name'] = "Index";
 		$data['title'] = 'Report';
 		
 		// return data to view
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_report_student_active'] = false;
+		$page_element['nav_report_course_active'] = false;
+		
 		$this->load->view('template/header',$page_element);
 		$this->load->view('report/teacher_report_class',$data);
 		$this->load->view('template/footer',$data);
