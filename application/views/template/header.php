@@ -141,7 +141,7 @@
                                 	<span>Dashboard</span>
                                 </a>
                             </li>
-                            <li class="<?php if($nav_report_active) echo 'active';?> treeview">
+                            <li class="<?php if($nav_report_active) echo 'active';?> treeview <?php if($this->session->userdata('u_role') != '02') echo 'hide'; ?>">
                                 <a href="#">
                                 	<i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                                     <ul class="treeview-menu">
@@ -150,7 +150,7 @@
                                     </ul>
                                 </a>
                             </li>
-                            <li class="<?php if($nav_event_active) echo 'active';?> treeview">
+                            <li class="<?php if($nav_event_active) echo 'active';?> treeview <?php if($this->session->userdata('u_role') != '01') echo 'hide'; ?>">
                             	<a href="#">
                                		<i class="fa fa-laptop"></i>
                                		<span>Event Log</span>
