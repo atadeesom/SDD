@@ -22,6 +22,15 @@ class Report extends CI_Controller{
         $page_element['nav_event_application_active'] = false;
     
         $page_element['screenName'] = 'Report';
+        
+        // set user variable
+        $uid = $this->session->userdata('uid');
+        if($uid != null){
+        	$page_element['user_full_name'] = $this->session->userdata('full_name');
+        	$uRole = $this->session->userdata('u_role');
+        	$page_element['user_role'] = $uRole == '01' ? 'Administrator' : $uRole == '02' ? 'Teacher' : 'Student';
+        		
+        }
     
         return $page_element;
     }
@@ -52,7 +61,7 @@ class Report extends CI_Controller{
 	    $page_element = $this->setDataReturnToView();
 	    $page_element['nav_report_student_active'] = false;
 	    $page_element['nav_report_course_active'] = true;
-	    
+	    $data = array();
 	    // return data to view
 	    $this->load->view('template/header',$page_element);
 	    $this->load->view('report/teacher_report_student',$data);
