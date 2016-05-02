@@ -21,6 +21,7 @@ class Report extends CI_Controller{
         $page_element['nav_event_security_active'] = false;
         $page_element['nav_event_application_active'] = false;
     
+        $page_element['title'] = 'Report';
         $page_element['screenName'] = 'Report';
     
         return $page_element;

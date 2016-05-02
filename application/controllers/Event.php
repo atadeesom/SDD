@@ -29,6 +29,7 @@ class Event extends CI_Controller {
 	    $page_element['nav_report_student_active'] = false;
 	    $page_element['nav_report_course_active'] = false;
 	    
+	    $page_element['title'] = 'Event';
 	    $page_element['screenName'] = 'Event';
 	     
 	    return $page_element;
@@ -343,7 +344,6 @@ class Event extends CI_Controller {
 			
 			// Check current date file exists
 			$hasCurrentDateFile = file_exists($path);
-			
 			// if file not exists
 			if(!$hasCurrentDateFile){
 				// create new file 
