@@ -31,7 +31,14 @@ class Event extends CI_Controller {
 	    
 	    $page_element['title'] = 'Event';
 	    $page_element['screenName'] = 'Event';
-	     
+	    
+	    // set user variable
+	    $uid = $this->session->userdata('uid');
+	    if($uid != null){
+	    	$page_element['user_full_name'] = $this->session->userdata('full_name');
+	    	$uRole = $this->session->userdata('u_role');
+	    	$page_element['user_role'] = $uRole == '01' ? 'Administrator' : $uRole == '02' ? 'Teacher' : 'Student';
+	    }
 	    return $page_element;
 	}
 	

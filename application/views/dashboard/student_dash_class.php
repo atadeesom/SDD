@@ -1,87 +1,32 @@
-     <script type="text/javascript">
-					function submitform(){
-						document.getElementById("reportStudentForm").submit();
-					}
-
-					function errorMSG(){
-						alert("Search not found!!");
-					}
-				</script>
-     
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Student Report
+            Dashboard
             <small>Version 2.0</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#"><i class="fa fa-files-o"></i> Report</a></li>
-            <li class="active">Each Student</li>
+            <li class="active">Dashboard</li>
           </ol>
         </section>
 
         <!-- Main content Dashboard -->
         <section class="content">
         <div class="row">
-            <div class="col-md-6">
-              <!-- general Quick Search form elements -->
-              <div class="box box-primary">
+            <div class="col-md-12">
+              <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Quick Search</h3>
+                  <i class="fa fa-group"></i>
+                  <h3 class="box-title">SDD1111C</h3>
                 </div><!-- /.box-header -->
-                <!-- form start -->
-                <form id="reportStudentForm" action="display_student_report.html" method="post">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label for="StudentID">Student ID</label>
-                      <input type="text" class="form-control" name="studentId" placeholder="Enter Student ID" >
-                    </div>
-                    <div>
-                    	<label for="coursetxt">Course</label>
-                    	<select class="form-control" name="courseId">
-                    		<?php foreach ($classes_list as &$class) {?>
-   							<option value="<?php echo $class[0]; ?>"><?php echo $class[1]; ?></option>
-   							<?php } ?>
-						</select>   	
-                    </div>
-                  </div><!-- /.box-body -->
-                  <div class="box-footer">
-                    <button class="btn bg-blue btn-flat btn-block" onclick ="submitform();">Search</button>
-                    <button class="btn bg-maroon btn-flat btn-block" >Clear</button>
-                  </div>
-                </form>
-                
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-            
-            <div class="col-md-6">
-              <div class="box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Student Info</h3>
-                </div>
                 <div class="box-body">
-                
-                  <?php if($errorMSG = TRUE) 
-     				echo '<script language="javascript">';
-					echo 'alert("Search not found!!")';
-					echo '</script>';?>
-                
-                  <label for="StudentIDtxt">Student ID : </label>
-                  <label for="StudentIDtxt"><?php echo $studentID; ?></label>
-                  <br>
-                  <!--<label for="StudentNametxt">Student Name : <?php echo $studentName; ?></label>
-                   <br> -->
-                  <label for="coursetxt">Course : <?php echo $courseName; ?> </label>
-                  
-           
-                  
+                  <p class="lead"><h4>Software Design and Develop</h4></p>
+                  <p class="text-aqua">Semester 1/2016</p>
                 </div>
               </div>
             </div>
-            
             <div class="col-md-6">
               <div class="box">
                 <div class="box-header with-border">
@@ -103,7 +48,7 @@
                 </div>
               </div>
             </div>
-        </div><!-- /.row -->
+        </div>
         </section><!-- /.content -->
         <section class="content">
           <!-- Info boxes -->
@@ -113,7 +58,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Assignment Score</h3>
+                  <h3 class="box-title">My Assignment Score</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -129,7 +74,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Exam Score</h3>
+                  <h3 class="box-title">My Exam Score</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
