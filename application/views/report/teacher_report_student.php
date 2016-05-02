@@ -1,3 +1,13 @@
+     <script type="text/javascript">
+					function submitform(){
+						document.getElementById("reportStudentForm").submit();
+					}
+
+					function errorMSG(){
+						alert("Search not found!!");
+					}
+				</script>
+     
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -23,19 +33,15 @@
                   <h3 class="box-title">Quick Search</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form id="reportStudentForm" action="display_student_report.html" method="post">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="StudentID">Student ID</label>
-                      <input type="StudentID" class="form-control" id="StudentID" placeholder="Enter Student ID">
-                    </div>
-                    <div class="form-group">
-                      <label for="StudentName">Student Name</label>
-                      <input type="StudentName" class="form-control" id="StudentName" placeholder="Enter Student Name">
+                      <input type="text" class="form-control" name="studentId" placeholder="Enter Student ID" >
                     </div>
                     <div>
                     	<label for="coursetxt">Course</label>
-                    	<select class="form-control">
+                    	<select class="form-control" name="courseId">
                     		<?php foreach ($classes_list as &$class) {?>
    							<option value="<?php echo $class[0]; ?>"><?php echo $class[1]; ?></option>
    							<?php } ?>
@@ -43,10 +49,11 @@
                     </div>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <button class="btn bg-blue btn-flat btn-block" type="submit">Search</button>
-                    <button class="btn bg-maroon btn-flat btn-block" type="clear">Clear</button>
+                    <button class="btn bg-blue btn-flat btn-block" onclick ="submitform();">Search</button>
+                    <button class="btn bg-maroon btn-flat btn-block" >Clear</button>
                   </div>
                 </form>
+                
               </div><!-- /.box -->
             </div><!-- /.col -->
             
@@ -57,11 +64,19 @@
                 </div>
                 <div class="box-body">
                 
+                  <?php if($errorMSG = TRUE) 
+     				echo '<script language="javascript">';
+					echo 'alert("Search not found!!")';
+					echo '</script>';?>
+                
                   <label for="StudentIDtxt">Student ID : </label>
+                  <label for="StudentIDtxt"><?php echo $studentID; ?></label>
                   <br>
-                  <label for="StudentNametxt">Student Name : </label>
-                  <br>
-                  <label for="coursetxt">Course : </label>
+                  <!--<label for="StudentNametxt">Student Name : <?php echo $studentName; ?></label>
+                   <br> -->
+                  <label for="coursetxt">Course : <?php echo $courseName; ?> </label>
+                  
+           
                   
                 </div>
               </div>
