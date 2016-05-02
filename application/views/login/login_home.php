@@ -32,11 +32,15 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <div class="social-auth-links text-center">
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Student Dash Board</a>
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Lecturer Dash Board</a>
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Lecturer Report Console</a>
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Admin Application Log Console</a>
-          <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in to Admin Security Log Console</a>
+        <p>Dashboard</p>
+        	<a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Administrator Dash Board</a>
+          <a href="<?php echo site_url('Dashboard/index/21');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Student Dash Board</a>
+          <a href="<?php echo site_url('Dashboard/index/11');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Lecturer Dash Board</a>
+        <p>Report</p>
+          <a href="<?php echo site_url('Report/index')?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Lecturer Report Console</a>
+        <p>Log</p>
+          <a href="<?php echo site_url('Event/display_application_log');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Application Log Console</a>
+          <a href="<?php echo site_url('Event/display_security_log');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Security Log Console</a>
         </div><!-- /.social-auth-links -->
 
         <a href="#">I forgot my password</a><br>
@@ -44,28 +48,6 @@
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
-	
-	<div>
-		<b>Date:</b> <?php print_r($date[0])?>
-		<table>
-			<tr>
-				<td>Date</td>
-				<td>User ID</td>
-				<td>User IP</td>
-				<td>Session ID</td>
-				<td>Detail</td>
-			</tr>
-			
-		</table>
-		
-		
-		<?php
-			print_r($logs[0][0]);
-		?>
-	</div>
-	
-	
-	
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url('styles/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
     <!-- Bootstrap 3.3.5 -->
