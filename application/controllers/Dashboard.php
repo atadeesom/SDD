@@ -81,6 +81,8 @@ class Dashboard extends CI_Controller{
 		$page_element['title'] = 'Dashboard';
 	
 		$page_element['nav_report_active'] = false;
+		$page_element['nav_report_course_active'] = false;
+		$page_element['nav_report_student_active'] = false;
 		$page_element['nav_deshboard_active'] = true;
 		$page_element['nav_event_active'] = false;
 		$page_element['nav_event_security_active'] = false;
