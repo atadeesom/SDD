@@ -9,7 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Report extends CI_Controller{
 	public function index()
 	{
-		//TODO: implement function and return data to view.
+		// Set the page element
+		$page_element['page_title'] = "Report";
+		$page_element['method_name'] = "Index";
+		$data['title'] = 'Report';
+		
+		// return data to view
+		$this->load->view('template/report_header',$page_element);
+		$this->load->view('report/teacher_report_class',$data);
+		$this->load->view('template/report_footer',$data);
 	}
 	
 	/**
