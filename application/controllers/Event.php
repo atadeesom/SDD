@@ -25,6 +25,10 @@ class Event extends CI_Controller {
 	    $page_element['nav_deshboard_active'] = false;
 	    $page_element['nav_event_active'] = true;
 	     
+	    //other page
+	    $page_element['nav_report_student_active'] = false;
+	    $page_element['nav_report_course_active'] = false;
+	    
 	    $page_element['screenName'] = 'Event';
 	     
 	    return $page_element;
