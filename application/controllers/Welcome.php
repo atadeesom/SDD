@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
 		
 		// return data to view
 		$this->load->view('template/dashboard_header',$page_element);
-		$this->load->view('dashboard/teacher_dash',$data);
+		$this->load->view('dashboard/student_dash_class',$data);
 		$this->load->view('template/dashboard_footer',$data);
 	}
 
