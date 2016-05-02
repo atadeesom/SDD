@@ -25,6 +25,8 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         
+        <!-- jQuery 2.1.4 -->
+        <script src="<?php echo base_url('styles/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
         <!-- FLOT CHARTS -->
         <script src="<?php echo base_url('styles/plugins/flot/jquery.flot.min.js')?>"></script>
         <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
