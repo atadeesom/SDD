@@ -18,15 +18,15 @@ class Dashboard extends CI_Controller{
 			
 			if ($uRole=='01') // Administrator Page
 			{
-				$this->load->view('template/dashboard_header',$this->setDataReturnToView());
+				$this->load->view('template/header',$this->setDataReturnToView());
 				$this->load->view('dashboard/teacher_dash',$data);
-				$this->load->view('template/dashboard_footer',$data);
+				$this->load->view('template/footer',$data);
 			}
 			else if($uRole == '02') // Teacher View
 			{
-				$this->load->view('template/dashboard_header',$this->setDataReturnToView());
+				$this->load->view('template/header',$this->setDataReturnToView());
 				$this->load->view('dashboard/teacher_dash',$data);
-				$this->load->view('template/dashboard_footer',$data);
+				$this->load->view('template/footer',$data);
 			}
 			else if($uRole == '03') // Student View
 			{
@@ -79,6 +79,7 @@ class Dashboard extends CI_Controller{
 		$page_element['page_title'] = "Dashboard";
 		$page_element['method_name'] = "";
 		$page_element['title'] = 'Dashboard';
+		
 	
 		$page_element['nav_report_active'] = false;
 		$page_element['nav_report_course_active'] = false;
@@ -95,6 +96,7 @@ class Dashboard extends CI_Controller{
 			$page_element['user_full_name'] = $this->session->userdata('full_name');
 			$uRole = $this->session->userdata('u_role');
 			$page_element['user_role'] = $uRole == '01' ? 'Administrator' : $uRole == '02' ? 'Teacher' : 'Student';
+			
 		}
 		
 	

@@ -141,16 +141,16 @@
                                 	<span>Dashboard</span>
                                 </a>
                             </li>
-                            <li class="<?php if($nav_report_active) echo 'active';?> treeview">
+                            <li class="<?php if($nav_report_active) echo 'active';?> treeview <?php if($this->session->userdata('u_role') != '02') echo 'hide'; ?>">
                                 <a href="#">
                                 	<i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                                     <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-o"></i>Student</a></li>
-                                        <li><a href="#"><i class="fa fa-circle-o"></i>Course</a></li>
+                                        <li><a href="<?php echo site_url('Report/display_student_report'); ?>"><i class="fa fa-circle-o"></i>Student</a></li>
+                                        <li><a href="<?php echo site_url('Report/display_class_report'); ?>"><i class="fa fa-circle-o"></i>Course</a></li>
                                     </ul>
                                 </a>
                             </li>
-                            <li class="<?php if($nav_event_active) echo 'active';?> treeview">
+                            <li class="<?php if($nav_event_active) echo 'active';?> treeview <?php if($this->session->userdata('u_role') != '01') echo 'hide'; ?>">
                             	<a href="#">
                                		<i class="fa fa-laptop"></i>
                                		<span>Event Log</span>
