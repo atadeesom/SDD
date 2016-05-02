@@ -155,8 +155,8 @@
                                 <a href="#">
                                 	<i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                                     <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-o"></i>Student</a></li>
-                                        <li><a href="#"><i class="fa fa-circle-o"></i>Course</a></li>
+                                        <li class="<?php if($nav_report_student_active) echo 'active'; ?>"><a href="#"><i class="fa fa-circle-o"></i>Student</a></li>
+                                        <li class="<?php if($nav_report_course_active) echo 'active'; ?>"><a href="#"><i class="fa fa-circle-o"></i>Course</a></li>
                                     </ul>
                                 </a>
                             </li>
