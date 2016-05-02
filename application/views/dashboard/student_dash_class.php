@@ -27,6 +27,27 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Actions</h3>
+                </div>
+                <div class="box-body">
+                  <a class="btn btn-app">
+                    <i class="fa fa-save"></i> Save
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-file-pdf-o"></i> Export PDF
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-file-excel-o"></i> Export Excel
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-file-photo-o "></i> Export Image
+                  </a>
+                </div>
+              </div>
+            </div>
         </div>
         </section><!-- /.content -->
         <section class="content">
