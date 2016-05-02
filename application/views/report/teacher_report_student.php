@@ -33,6 +33,14 @@
                       <label for="StudentName">Student Name</label>
                       <input type="StudentName" class="form-control" id="StudentName" placeholder="Enter Student Name">
                     </div>
+                    <div>
+                    	<label for="classtxt">Class</label>
+                    	<select class="form-control">
+                    		<?php foreach ($classes_list as &$class) {?>
+   							<option value="<?php echo $class[0]; ?>"><?php echo $class[1]; ?></option>
+   							<?php } ?>
+						</select>   	
+                    </div>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                     <button class="btn bg-blue btn-flat btn-block" type="submit">Search</button>
@@ -41,6 +49,24 @@
                 </form>
               </div><!-- /.box -->
             </div><!-- /.col -->
+            
+            <div class="col-md-6">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Student Info</h3>
+                </div>
+                <div class="box-body">
+                
+                  <label for="StudentIDtxt">Student ID : </label>
+                  <br>
+                  <label for="StudentNametxt">Student Name : </label>
+                  <br>
+                  <label for="classtxt">Class : </label>
+                  
+                </div>
+              </div>
+            </div>
+            
             <div class="col-md-6">
               <div class="box">
                 <div class="box-header with-border">
