@@ -34,7 +34,7 @@
                       <input type="StudentName" class="form-control" id="StudentName" placeholder="Enter Student Name">
                     </div>
                     <div>
-                    	<label for="classtxt">Class</label>
+                    	<label for="coursetxt">Course</label>
                     	<select class="form-control">
                     		<?php foreach ($classes_list as &$class) {?>
    							<option value="<?php echo $class[0]; ?>"><?php echo $class[1]; ?></option>
@@ -61,7 +61,7 @@
                   <br>
                   <label for="StudentNametxt">Student Name : </label>
                   <br>
-                  <label for="classtxt">Class : </label>
+                  <label for="coursetxt">Course : </label>
                   
                 </div>
               </div>
