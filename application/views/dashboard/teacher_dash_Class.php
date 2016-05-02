@@ -19,10 +19,10 @@
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <i class="fa fa-group"></i>
-                  <h3 class="box-title">Course</h3>
+                  <h3 class="box-title">SDD1111C</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <p class="lead"><h3>SDD1111C :: Software Design and Develop</h3></p>
+                  <p class="lead"><h4>Software Design and Develop</h4></p>
                   <p class="text-aqua">Semester 1/2016</p>
                 </div>
               </div>
