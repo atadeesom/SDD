@@ -172,6 +172,8 @@ class Event extends CI_Controller {
 		// Set the page element
 		$page_element['page_title'] = "Event";
 		$page_element['method_name'] = "index";
+		$page_element['nav_report_active'] = false;
+		$page_element['nav_event_active'] = true;
 		
 		$data['dateCriteria'] = $dateTerm;
 		$data['initailFlag'] = $initailFlag;

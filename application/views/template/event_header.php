@@ -149,7 +149,7 @@
                 <i class="fa fa-dashboard"></i><span>Dashboard</span>
               </a>
             </li>
-            <li class="treeview">
+            <li class="<?php if($nav_report_active) echo 'active';?> treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i><span>Report</span><i class="fa fa-angle-left pull-right"></i>
                   <ul class="treeview-menu">
@@ -159,7 +159,7 @@
                   </ul>
               </a>
             </li>
-            <li class="active treeview">
+            <li class="<?php if($nav_event_active) echo 'active';?> treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i><span>Event Log</span><i class="fa fa-angle-left pull-right"></i>
                 <ul class="treeview-menu">
