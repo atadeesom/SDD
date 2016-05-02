@@ -37,7 +37,8 @@ class Dashboard extends CI_Controller{
 				$this->load->view('template/dashboard_header',$page_element);
 				$this->load->view('dashboard/teacher_dash',$data);
 				$this->load->view('template/dashboard_footer',$data);
-			}else if($uRole == '02') // Teacher View
+			}
+			else if($uRole == '02') // Teacher View
 			{
 				$this->load->view('template/dashboard_header',$page_element);
 				$this->load->view('dashboard/teacher_dash',$data);
