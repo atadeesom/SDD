@@ -53,11 +53,10 @@ class Event extends CI_Controller {
 		$page_element['method_name'] = "Index";
 		$data['title'] = 'Event list';
 		
-		$page_element['nav_report_active'] = false;
-		$page_element['nav_deshboard_active'] = false;
-		$page_element['nav_event_active'] = true;
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_event_security_active'] = true;
+		$page_element['nav_event_application_active'] = false;
 		
-		$page_element['screenName'] = 'Event';
 		$page_element['dateCriteria'] = '';
 		
 		// return data to view

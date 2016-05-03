@@ -44,7 +44,7 @@ class Report extends CI_Controller{
 		// return data to view
 		$page_element = $this->setDataReturnToView();
 		$page_element['nav_report_student_active'] = false;
-		$page_element['nav_report_course_active'] = false;
+		$page_element['nav_report_course_active'] = true;
 		
 		$this->load->view('template/header',$page_element);
 		$this->load->view('report/teacher_report_class',$data);
@@ -58,14 +58,81 @@ class Report extends CI_Controller{
 	 */
 	public function display_class_report(){
 		//TODO: implement function and return data to view.
-		
-	    $page_element = $this->setDataReturnToView();
-	    $page_element['nav_report_student_active'] = false;
-	    $page_element['nav_report_course_active'] = true;
 	    $data = array();
+	    $data['courseList'] = array();
+	    
+	    $fileName = FCPATH."application/master/course.txt";
+	    if(file_exists($fileName)){
+	        $myFile = fopen($fileName,"r") or die("Unable to open file!");
+	        $courses = array();
+	        while (!feof($myFile)) {
+	            $textLine = fgets($myFile);
+	            array_push($courses, explode(",",$textLine));
+	        }
+	        fclose($myFile);
+	        $data['courseList'] = $courses;
+	    }else{
+	        echo 'error';
+	    }
+	    
+	    //Search Data
+	    $courseDetail = array();
+	    $course = $this->input->post('selectedCourse');
+	    if(empty($course)) {
+	        $data['errorMSG'] = TRUE;
+	        $data['selectedCourse'] = $course;
+	        $data['lecturer'] = "";
+	        $data['courseName'] = "";
+	    }else{
+	        $data['errorMSG'] = FALSE;
+	        $data['selectedCourse'] = $course;
+	        
+	        for($i = 0; $i <= count($courses)-1; $i++){
+	            if($course == $courses[$i][0]){
+	                $courseDetail = array($courses[$i][1], $courses[$i][2]);
+	                break;
+	            }
+	        }
+	           
+	       /*  
+	        $assignment = array();
+	        // Search Assignment
+	        $fileName = FCPATH."application/score/assignment.txt";
+	        if(file_exists($fileName)){
+	            $myFile = fopen($fileName,"r") or die("Unable to open file!");
+	            $search = array();
+	             
+	            while (!feof($myFile)) {
+    				$textLine = fgets($myFile);
+    				$line = array();
+    				$line = explode(",",$textLine);
+    				if($line[0] == $sid)
+    				{
+    				    $data2['studentName'] = $line[1];
+    				    if($line[2] == $cid){
+    				        $data2['courseName'] = $line[3];
+    				        $score = array('assg' => $line[4], 'score' => $line[5] );
+    				        array_push($assignment, $score);
+    				    }
+    				}
+    				array_push($search, explode(",",$textLine));
+	            }
+	            fclose($myFile);
+	        }
+	        $data = $data2; */
+	    }
+	    
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_report_student_active'] = false;
+		$page_element['nav_report_course_active'] = true;
+	    
+		$data['selectedCourse'] = $course;
+		$data['courseDetail'] = $courseDetail;
+		//array_push($data['courseDetail'],$courseDetail);
+		
 	    // return data to view
 	    $this->load->view('template/header',$page_element);
-	    $this->load->view('report/teacher_report_student',$data);
+	    $this->load->view('report/teacher_report_class',$data);
 	    $this->load->view('template/footer',$data);
 	}
 
@@ -111,38 +178,35 @@ class Report extends CI_Controller{
 			$data2['courseName'] = "";
 			
 			$this->load->view('report/teacher_report_student',$data2);
-		}
-		else{
-			
-		$data2['errorMSG'] = FALSE;
-		$data2['studentID'] = $sid;
-		$assignment = array();
-		// Search Assignment
-		$fileName = FCPATH."application/score/assignment.txt";
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			$search = array();
-			
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $sid)
-				{
-					$data2['studentName'] = $line[1];
-					if($line[2] == $cid){
-						$data2['courseName'] = $line[3];
-						$score = array('assg' => $line[4], 'score' => $line[5] );
-						array_push($assignment, $score);
-					}
-				}
-				array_push($search, explode(",",$textLine));
-			}
-			fclose($myFile);
-		}
-		
-		$data = $data2;
-	}
+		} else{
+    		$data2['errorMSG'] = FALSE;
+    		$data2['studentID'] = $sid;
+    		$assignment = array();
+    		// Search Assignment
+    		$fileName = FCPATH."application/score/assignment.txt";
+    		if(file_exists($fileName)){
+    			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+    			$search = array();
+    			
+    			while (!feof($myFile)) {
+    				$textLine = fgets($myFile);
+    				$line = array();
+    				$line = explode(",",$textLine);
+    				if($line[0] == $sid)
+    				{
+    					$data2['studentName'] = $line[1];
+    					if($line[2] == $cid){
+    						$data2['courseName'] = $line[3];
+    						$score = array('assg' => $line[4], 'score' => $line[5] );
+    						array_push($assignment, $score);
+    					}
+    				}
+    				array_push($search, explode(",",$textLine));
+    			}
+    			fclose($myFile);
+    		}
+    		$data = $data2;
+    	}
 		// return data to view
 		$this->load->view('template/report_header',$page_element);
 		$this->load->view('report/teacher_report_student',$data);
@@ -197,5 +261,10 @@ class Report extends CI_Controller{
 		$this->load->view('template/report_header',$page_element);
 		$this->load->view('report/teacher_report_student',$data);
 		$this->load->view('template/report_footer',$data);
+	}
+	
+	//*******///////////////////////Course Report////////////////////////////////////
+	public function searchCourseReport(){
+	    
 	}
 }
