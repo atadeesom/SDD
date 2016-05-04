@@ -175,7 +175,6 @@ class Report extends CI_Controller{
 		$sid = $this->input->post('studentId');
 		$cid = $this->input->post('courseId');
 		
-<<<<<<< HEAD
 		if ($sid = "") {
 			$data2['errorMSG'] = TRUE;
 			$data2['studentID'] = "";
@@ -222,7 +221,7 @@ class Report extends CI_Controller{
 		//Search Data
 		$sid = $this->input->post('studentId');
 		$cid = $this->input->post('courseId');
-=======
+
 		if ($chk == "") {
 			$data['errorMSG'] = 2;
 			$data['studentID'] = "";
@@ -263,7 +262,6 @@ class Report extends CI_Controller{
 		}
 		
 		$data['assignment'] = $assignment;
->>>>>>> 9b7cc485865a0bdfc4d6e7841bdd5205217de705
 		
 		// Search Exam
 		$fileNameExam = FCPATH."application/score/exam.txt";
@@ -303,14 +301,8 @@ class Report extends CI_Controller{
 		$this->load->view('template/report_footer',$data);
 	}
 	
-<<<<<<< HEAD
 	//*******///////////////////////Course Report////////////////////////////////////
 	public function searchCourseReport(){
 	    
 	}
-=======
-	
-	
-	
->>>>>>> 9b7cc485865a0bdfc4d6e7841bdd5205217de705
 }
