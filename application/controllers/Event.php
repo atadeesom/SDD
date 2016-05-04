@@ -53,10 +53,18 @@ class Event extends CI_Controller {
 		$page_element['method_name'] = "Index";
 		$data['title'] = 'Event list';
 		
+<<<<<<< .merge_file_a02596
 		$page_element = $this->setDataReturnToView();
 		$page_element['nav_event_security_active'] = true;
 		$page_element['nav_event_application_active'] = false;
 		
+=======
+		$page_element['nav_report_active'] = false;
+		$page_element['nav_deshboard_active'] = false;
+		$page_element['nav_event_active'] = true;
+		
+		$page_element['screenName'] = 'Event';
+>>>>>>> .merge_file_a09212
 		$page_element['dateCriteria'] = '';
 		
 		// return data to view

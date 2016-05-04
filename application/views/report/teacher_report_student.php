@@ -1,6 +1,8 @@
      <script type="text/javascript">
 					function submitform(){
+						document.getElementById('chk').value = "2";
 						document.getElementById("reportStudentForm").submit();
+						
 					}
 
 					function errorMSG(){
@@ -33,7 +35,7 @@
                   <h3 class="box-title">Quick Search</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form id="reportStudentForm" action="display_student_report.html" method="post">
+                <form id="reportStudentForm" action="display_student_report" method="post">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="StudentID">Student ID</label>
@@ -49,6 +51,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
+                  	<input type="hidden" name="chk">
                     <button class="btn bg-blue btn-flat btn-block" onclick ="submitform();">Search</button>
                     <button class="btn bg-maroon btn-flat btn-block" >Clear</button>
                   </div>
@@ -64,10 +67,8 @@
                 </div>
                 <div class="box-body">
                 
-                  <?php if($errorMSG = TRUE) 
-     				echo '<script language="javascript">';
-					echo 'alert("Search not found!!")';
-					echo '</script>';?>
+       			 
+        
                 
                   <label for="StudentIDtxt">Student ID : </label>
                   <label for="StudentIDtxt"><?php echo $studentID; ?></label>
@@ -151,10 +152,15 @@
          * ---------
          */
 
-        var assignment_data = {
-          data: [["Ass1", 10], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
-          color: "#3c8dbc"
-        };
+			var assignment_data = {
+			          data: <?php echo $assignment; ?>,
+			          color: "#3c8dbc"
+			        };
+         
+//         var assignment_data = {
+//           data: [["Ass1", 10], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
+//           color: "#3c8dbc"
+//         };
         var exam_data = {
           data: [["Exam1", 90], ["Exam2", 84], ["Exam3", 45], ["Exam4", 31], ["Exam5", 60], ["Exam6", 90]],
           color: "#3c8dbc"
