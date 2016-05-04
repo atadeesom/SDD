@@ -138,13 +138,31 @@
 
 <!-- Data -->
 <script>
+
     /*
      * BAR CHART
      * ---------
      */
 
+     <?php
+        /* print_r($assignment_data);
+         if(isset($assignment_data)){
+            $row = count($assignment_data);
+            $text = "[[";
+            for ($i = 0; $i <= ($row - 1); $i++){
+                $text += "'".$assignment_data[$i][0]."',".$assignment_data[$i][0]."],";
+            }
+            $text = substr($text, 0, -1);
+            $text += "],";
+            
+            print_r($assignment_data[0][0]);
+            echo "alert(".$assignment_data[0][0].")";
+            //exit();
+        }  */
+    ?>
+     
     var assignment_data = {
-      data: [["Ass1", 10], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
+      data: [["Software Process Improvement", 0], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
       color: "#3c8dbc"
     };
     var exam_data = {
@@ -172,7 +190,6 @@
         tickLength: 0
       }
     });
-
 
     /* Exam SCORE */
     $.plot("#exam-chart", [exam_data], {

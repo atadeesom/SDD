@@ -76,6 +76,7 @@ class Report extends CI_Controller{
 	    }
 	    
 	    //Search Data
+	    $assignmentScore = array();
 	    $courseDetail = array();
 	    $course = $this->input->post('selectedCourse');
 	    if(empty($course)) {
@@ -94,8 +95,8 @@ class Report extends CI_Controller{
 	            }
 	        }
 	           
-	       /*  
-	        $assignment = array();
+	         
+	        /* $assignment = array();
 	        // Search Assignment
 	        $fileName = FCPATH."application/score/assignment.txt";
 	        if(file_exists($fileName)){
@@ -120,6 +121,50 @@ class Report extends CI_Controller{
 	            fclose($myFile);
 	        }
 	        $data = $data2; */
+	        
+	        $array = array();
+	        $noOfstudent = array();
+	        $fileName = FCPATH."application/score/assignment.txt";
+	        if(file_exists($fileName)){
+	            $myFile = fopen($fileName,"r") or die("Unable to open file!");
+	            while(!feof($myFile)){
+	                $textLine = fgets($myFile);
+	                $line = array();
+	                $line = explode("," , $textLine);
+	                array_push($array, array('assignmentCd' => $line[3], 'score' => $line[5]));
+	                array_push($noOfstudent, array('assignmentCd' => $line[3], 'student' => $line[0]));
+	            }
+	            fclose($myFile);
+	        }
+	        
+	        $res  = array();
+	        foreach($array as $vals){
+	            if(array_key_exists($vals['assignmentCd'], $res)){
+	                $res[$vals['assignmentCd']]['score']           += $vals['score'];
+	                $res[$vals['assignmentCd']]['assignmentCd']    = $vals['assignmentCd'];
+	            }else{
+	                $res[$vals['assignmentCd']]  = $vals;
+	            }
+	        }
+	        
+	        $noOfStudentPerAssignment = array();
+	        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'assignmentCd'));
+	        
+	        $temp = array();
+	        //print_r($res);
+	        foreach($res as $vals){
+	            $courseName = $vals['assignmentCd'];
+	            $totalScore = $vals['score'];
+	            $noOfStudent = $noOfStudentPerAssignment[$courseName];
+	            array_push($assignmentScore, array($courseName, ($totalScore/$noOfStudent)));
+	        }
+	        
+	        //print_r($assignmentScore);
+	        //exit();
+	        
+	        //$score = array('assg' => $line[4], 'score' => $line[5] );
+	        //array_push($assignment, $score);
+	        
 	    }
 	    
 		$page_element = $this->setDataReturnToView();
@@ -128,7 +173,7 @@ class Report extends CI_Controller{
 	    
 		$data['selectedCourse'] = $course;
 		$data['courseDetail'] = $courseDetail;
-		//array_push($data['courseDetail'],$courseDetail);
+		$data['assignment_data'] = $assignmentScore;
 		
 	    // return data to view
 	    $this->load->view('template/header',$page_element);
