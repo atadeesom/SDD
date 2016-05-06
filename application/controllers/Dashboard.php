@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller{
 			if ($uRole=='01') // Administrator Page
 			{
 				$this->load->view('template/header',$this->setDataReturnToView());
-				$this->load->view('dashboard/teacher_dash',$data);
+				$this->load->view('dashboard/admin_dash',$data);
 				$this->load->view('template/footer',$data);
 			}
 			else if($uRole == '02') // Teacher View

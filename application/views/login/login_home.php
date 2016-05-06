@@ -32,7 +32,7 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <div class="social-auth-links text-center">
-        	<a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Administrator</a>
+        	<a href="<?php echo site_url('Dashboard/index/01')?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Administrator</a>
           <a href="<?php echo site_url('Dashboard/index/21');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Student</a>
           <a href="<?php echo site_url('Dashboard/index/11');?>" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Log in as Lecturer</a>
 		<!-- /.social-auth-links -->
