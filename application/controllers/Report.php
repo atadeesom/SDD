@@ -150,17 +150,18 @@ class Report extends CI_Controller{
 	        $noOfStudentPerAssignment = array();
 	        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'assignmentCd'));
 	        
-	        $temp = array();
-	        //print_r($res);
 	        foreach($res as $vals){
 	            $courseName = $vals['assignmentCd'];
 	            $totalScore = $vals['score'];
 	            $noOfStudent = $noOfStudentPerAssignment[$courseName];
-	            array_push($assignmentScore, array($courseName, ($totalScore/$noOfStudent)));
+	            
+	            // Graph Data should be provide by using this kind of array.
+	            $assignmentScore[$courseName] = ($totalScore/$noOfStudent);
 	        }
 	        
-	        //print_r($assignmentScore);
-	        //exit();
+// 	        echo '<pre>'; 
+// 	        print_r($temp);
+// 	        exit();
 	        
 	        //$score = array('assg' => $line[4], 'score' => $line[5] );
 	        //array_push($assignment, $score);
