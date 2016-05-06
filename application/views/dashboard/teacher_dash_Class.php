@@ -58,7 +58,8 @@
         	<!-- Assignment  -->
         	<?php foreach ($assignment_list as $assignment) {?>
           <div class="col-md-6">
-            <a href="#"><div class="callout callout-success">
+            <a href="<?php echo site_url('Dashboard/assignment/'.$cid.'/'.$assignment['ass_id']); ?>">
+            <div class="callout callout-success">
                     <h4><?php echo $assignment['ass_name']?></h4>
                     <p><?php echo $assignment['ass_detail']?></p>
             </div>
@@ -69,7 +70,8 @@
           <!--  Exam -->
           <?php foreach ($exam_list as $exam) {?>
           <div class="col-md-6">
-            <a href="#"><div class="callout callout-danger">
+            <a href="<?php echo site_url('Dashboard/exam/'.$cid.'/'.$exam['exam_id']); ?>">
+            <div class="callout callout-danger">
                     <h4><?php echo $exam['exam_name'];?></h4>
                     <p><?php echo $exam['exam_detail'];?></p>
             </div>

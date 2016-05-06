@@ -19,12 +19,12 @@
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <i class="fa fa-group"></i>
-                  <h3 class="box-title">SDD1111C</h3>
+                  <h3 class="box-title"><?php echo $course['cid'];?></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <p class="lead"><h4>Software Design and Develop</h4></p>
-                  <p class="text-aqua">Semester 1/2016</p>
-                  <p class="text-green">Exam 1</p>
+                  <p class="lead"><h4><?php echo $course['course_name']; ?></h4></p>
+                  <p class="text-aqua"><?php echo $exam_detail['exam_name'];?></p>
+                  <p class="text-green"><?php echo $exam_detail['exam_detail'];?></p>
                 </div>
               </div>
             </div>
@@ -49,37 +49,16 @@
                       <th>Student ID</th>
                       <th>Student Name</th>
                       <th>Score</th>
-                      <th>Percent</th>
                       <th>Status</th>
                     </tr>
+                    <?php foreach ($exams as $exam){?>
                     <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>50/100</td>
-                      <td>50%</td>
+                      <td><?php echo $exam['sid']; ?></td>
+                      <td><?php echo $exam['s_name'];?></td>
+                      <td><?php echo $exam['score'];?></td>
                       <td><span class="label label-success">Pass</span></td>
                     </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>50/100</td>
-                      <td>50%</td>
-                      <td><span class="label label-success">Pass</span></td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>50/100</td>
-                      <td>50%</td>
-                      <td><span class="label label-success">Pass</span></td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>20/100</td>
-                      <td>20%</td>
-                      <td><span class="label label-danger">Fail</span></td>
-                    </tr>
+                    <?php }?>
                   </tbody></table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -93,10 +72,10 @@
                       <h3 class="box-title">Actions</h3>
                     </div>
                     <div class="box-body">
-                      <a class="btn btn-app">
+                      <a class="btn btn-app" href="<?php echo site_url('Dashboard')?>">
                         <i class="fa fa-slack"></i> See Assignment
                       </a>
-                      <a class="btn btn-app">
+                      <a class="btn btn-app" href="<?php echo site_url('Dashboard/course/'.$course['cid']);?>">
                         <i class="fa fa-chevron-circle-left"></i> Back to Course
                       </a>
                       </a>

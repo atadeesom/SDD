@@ -42,9 +42,32 @@ class Dashboard extends CI_Controller{
 		$data['assignment_list'] = $this->setAssignmentList($cid);
 		$data['course'] = $this->getCourse($cid);
 		$data['exam_list'] = $this->setExamList($cid);
+		$data['cid'] = $cid;
 		
 		$this->load->view('template/header',$this->setDataReturnToView());
 		$this->load->view('dashboard/teacher_dash_class',$data);
+		$this->load->view('template/footer',$data);
+	}
+	
+	public function assignment($cid = 0, $assid = 0){
+		$data['assignments'] = $this->getAssignment($cid,$assid);
+		$data['course'] = $this->getCourse($cid);
+		$data['assignment_details'] = $this->getAssignmentMaster($cid,$assid);
+		
+		$this->load->view('template/header',$this->setDataReturnToView());
+		$this->load->view('dashboard/teacher_dash_assignment',$data);
+		$this->load->view('template/footer',$data);
+	}
+	
+	public function exam($cid = 0, $eid = 0)
+	{
+		$data['assignment_list'] = $this->setAssignmentList($cid);
+		$data['course'] = $this->getCourse($cid);
+		$data['exams'] = $this->getExams($cid,$eid);
+		$data['exam_detail'] = $this->getExamMaster($cid,$eid);
+		
+		$this->load->view('template/header',$this->setDataReturnToView());
+		$this->load->view('dashboard/teacher_dash_exam',$data);
 		$this->load->view('template/footer',$data);
 	}
 	
@@ -238,6 +261,57 @@ class Dashboard extends CI_Controller{
 			echo 'error setAssignmentList';
 		}
 	}
+	
+	private function getAssignmentMaster($cid = 0, $assid = 0)
+	{
+		$fileName = FCPATH."application/master/assignment.txt";
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				$line = array();
+				$line = explode(",",$textLine);
+				if($line[0] == $cid && $assid == $line[1]){
+					$assignment = array(
+							'ass_id' => $line[1],
+							'ass_name' => $line[2],
+							'ass_detail' => $line[3]
+					);
+				}
+			}
+			fclose($myFile);
+			return $assignment;
+		}else{
+			echo 'error setAssignmentList';
+		}
+	}
+	
+	private function getAssignment($cid = 0, $assid = 0)
+	{
+		$fileName = FCPATH."application/score/assignment.txt";
+		$assignments = array();
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				$line = array();
+				$line = explode(",",$textLine);
+				if($line[2] == $cid && $line[4] == $assid){
+					$assignment = array(
+							'sid' => $line[0],
+							's_name' => $line[1],
+							'score' => $line[5]
+					);
+					array_push($assignments, $assignment);
+				}
+			}
+			fclose($myFile);
+			return $assignments;
+		}else{
+			echo 'error setAssignmentList';
+		}
+	}
+	
 	private function setExamList($cid = 0)
 	{
 		$fileName = FCPATH."application/master/exam.txt";
@@ -253,6 +327,55 @@ class Dashboard extends CI_Controller{
 							'exam_id' => $line[1],
 							'exam_name' => $line[2],
 							'exam_detail' => $line[3]
+					);
+					array_push($exams, $exam);
+				}
+			}
+			fclose($myFile);
+			return $exams;
+		}else{
+			echo 'error setExamList';
+		}
+	}
+	
+	private function getExamMaster($cid = 0, $exam_id = 0)
+	{
+		$fileName = FCPATH."application/master/exam.txt";
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				$line = array();
+				$line = explode(",",$textLine);
+				if($line[0] == $cid && $line[1] == $exam_id){
+					$exam = array(
+							'exam_id' => $line[1],
+							'exam_name' => $line[2],
+							'exam_detail' => $line[3]
+					);
+				}
+			}
+			fclose($myFile);
+			return $exam;
+		}else{
+			echo 'error setExamList';
+		}
+	}
+	private function getExams($cid = 0, $exam_id = 0)
+	{
+		$fileName = FCPATH."application/score/exam.txt";
+		$exams = array();
+		if(file_exists($fileName)){
+			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+			while (!feof($myFile)) {
+				$textLine = fgets($myFile);
+				$line = array();
+				$line = explode(",",$textLine);
+				if($line[2] == $cid && $line[4] == $exam_id){
+					$exam = array(
+							'sid' => $line[0],
+							's_name' => $line[1],
+							'score' => $line[5]
 					);
 					array_push($exams, $exam);
 				}

@@ -19,12 +19,12 @@
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <i class="fa fa-group"></i>
-                  <h3 class="box-title">SDD1111C</h3>
+                  <h3 class="box-title"><?php echo $course['cid']; ?></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <p class="lead"><h4>Software Design and Develop</h4></p>
-                  <p class="text-aqua">Semester 1/2016</p>
-                  <p class="text-green">Assignment 1</p>
+                  <p class="lead"><h4><?php echo $course['course_name']; ?></h4></p>
+                  <p class="text-aqua"><?php echo $assignment_details['ass_name']; ?></p>
+                  <p class="text-green"><?php echo $assignment_details['ass_detail'];?></p>
                 </div>
               </div>
             </div>
@@ -48,38 +48,17 @@
                     <tbody><tr>
                       <th>Student ID</th>
                       <th>Student Name</th>
-                      <th>Submit Date</th>
                       <th>Status</th>
                       <th>Score</th>
                     </tr>
+                    <?php foreach ($assignments as $assignment) {?>
                     <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
+                      <td><?php echo $assignment['sid']; ?></td>
+                      <td><?php echo $assignment['s_name'];?></td>
                       <td><span class="label label-success">Approved</span></td>
-                      <td>50/100</td>
+                      <td><?php echo $assignment['score']; ?></td>
                     </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-warning">Pending</span></td>
-                      <td>50/100</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-success">Approved</span></td>
-                      <td>50/100</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-danger">Denied</span></td>
-                      <td>50/100</td>
-                    </tr>
+                    <?php }?>
                   </tbody></table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -93,10 +72,10 @@
                       <h3 class="box-title">Actions</h3>
                     </div>
                     <div class="box-body">
-                      <a class="btn btn-app">
+                      <a class="btn btn-app" href="<?php echo site_url('Dashboard')?>">
                         <i class="fa fa-slack"></i> See Exams
                       </a>
-                      <a class="btn btn-app">
+                      <a class="btn btn-app" href="<?php echo site_url('Dashboard/course/'.$course['cid']);?>">
                         <i class="fa fa-chevron-circle-left"></i> Back to Course
                       </a>
                       </a>
