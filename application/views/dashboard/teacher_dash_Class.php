@@ -19,11 +19,11 @@
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <i class="fa fa-group"></i>
-                  <h3 class="box-title">SDD1111C</h3>
+                  <h3 class="box-title"><?php echo $course['cid'];?></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <p class="lead"><h4>Software Design and Develop</h4></p>
-                  <p class="text-aqua">Semester 1/2016</p>
+                  <p class="lead"><h4><?php echo $course['course_name']; ?></h4></p>
+                  <p class="text-aqua"><?php echo $course['lecturer']; ?></p>
                 </div>
               </div>
             </div>
@@ -33,69 +33,49 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>9</h3>
+                  <h3><?php echo count($assignment_list);?></h3>
                   <p>Assignments</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-tumblr"></i>
                 </div>
-                <a class="small-box-footer" href="#">
-                  More info <i class="fa fa-arrow-circle-right"></i>
-                </a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-2 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>9</h3>
+                  <h3><?php echo count($assignment_list);?></h3>
                   <p>Exams</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-paper-plane-o"></i>
                 </div>
-                <a class="small-box-footer" href="#">
-                  More info <i class="fa fa-arrow-circle-right"></i>
-                </a>
               </div>
             </div><!-- ./col -->
           </div>
         <div class="row">
+        	<!-- Assignment  -->
+        	<?php foreach ($assignment_list as $assignment) {?>
           <div class="col-md-6">
             <a href="#"><div class="callout callout-success">
-                    <h4>Assignment 1</h4>
-                    <p>Intro to Software Design</p>
+                    <h4><?php echo $assignment['ass_name']?></h4>
+                    <p><?php echo $assignment['ass_detail']?></p>
             </div>
             </a>
           </div>
-          <div class="col-md-6">
-            <a href="#"><div class="callout callout-success">
-                    <h4>Assignment 2</h4>
-                    <p>Intro to Software Design</p>
-            </div>
-            </a>
-          </div>
+          <?php }?>
+          <!--  End of Assignment -->
+          <!--  Exam -->
+          <?php foreach ($exam_list as $exam) {?>
           <div class="col-md-6">
             <a href="#"><div class="callout callout-danger">
-                    <h4>Exam 1</h4>
-                    <p>Intro to Software Design</p>
+                    <h4><?php echo $exam['exam_name'];?></h4>
+                    <p><?php echo $exam['exam_detail'];?></p>
             </div>
             </a>
           </div>
-          <div class="col-md-6">
-            <a href="#"><div class="callout callout-danger">
-                    <h4>Exam 2</h4>
-                    <p>Intro to Software Design</p>
-            </div>
-            </a>
-          </div>
-          <div class="col-md-6">
-            <a href="#"><div class="callout callout-danger">
-                    <h4>Exam 3</h4>
-                    <p>Intro to Software Design</p>
-            </div>
-            </a>
-          </div>
+          <?php }?>
         </div>
         <div class="row">
             <div class="col-md-12">
