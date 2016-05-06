@@ -1,6 +1,5 @@
      <script type="text/javascript">
 					function submitform(){
-						document.getElementById('chk').value = "2";
 						document.getElementById("reportStudentForm").submit();
 						
 					}
@@ -151,16 +150,13 @@
          * BAR CHART
          * ---------
          */
+//          var a = parseInt("7");
 
-			var assignment_data = {
-			          data: <?php echo $assignment; ?>,
-			          color: "#3c8dbc"
-			        };
          
-//         var assignment_data = {
-//           data: [["Ass1", 10], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
-//           color: "#3c8dbc"
-//         };
+        var assignment_data = {
+          data: [["Ass1", 9], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
+          color: "#3c8dbc"
+        };
         var exam_data = {
           data: [["Exam1", 90], ["Exam2", 84], ["Exam3", 45], ["Exam4", 31], ["Exam5", 60], ["Exam6", 90]],
           color: "#3c8dbc"

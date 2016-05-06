@@ -220,53 +220,6 @@ class Report extends CI_Controller{
 		//Search Data		
 		$sid = $this->input->post('studentId');
 		$cid = $this->input->post('courseId');
-		
-		if ($sid = "") {
-			$data2['errorMSG'] = TRUE;
-			$data2['studentID'] = "";
-			$data2['studentName'] = "";
-			$data2['courseName'] = "";
-			
-			$this->load->view('report/teacher_report_student',$data2);
-		} else{
-    		$data2['errorMSG'] = FALSE;
-    		$data2['studentID'] = $sid;
-    		$assignment = array();
-    		// Search Assignment
-    		$fileName = FCPATH."application/score/assignment.txt";
-    		if(file_exists($fileName)){
-    			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-    			$search = array();
-    			
-    			while (!feof($myFile)) {
-    				$textLine = fgets($myFile);
-    				$line = array();
-    				$line = explode(",",$textLine);
-    				if($line[0] == $sid)
-    				{
-    					$data2['studentName'] = $line[1];
-    					if($line[2] == $cid){
-    						$data2['courseName'] = $line[3];
-    						$score = array('assg' => $line[4], 'score' => $line[5] );
-    						array_push($assignment, $score);
-    					}
-    				}
-    				array_push($search, explode(",",$textLine));
-    			}
-    			fclose($myFile);
-    		}
-    		$data = $data2;
-    	}
-		// return data to view
-		$this->load->view('template/report_header',$page_element);
-		$this->load->view('report/teacher_report_student',$data);
-		$this->load->view('template/report_footer',$data);
-	}
-	
-	public function display_student_report_Search(){
-		//Search Data
-		$sid = $this->input->post('studentId');
-		$cid = $this->input->post('courseId');
 
 		if ($chk == "") {
 			$data['errorMSG'] = 2;
@@ -336,16 +289,95 @@ class Report extends CI_Controller{
 		}
 		
 		$data['exam'] = $exam;
-		
-// 		echo '<pre>';
-// 		print_r($exam);
-// 		exit();
-		
 		// return data to view
 		$this->load->view('template/report_header',$page_element);
 		$this->load->view('report/teacher_report_student',$data);
 		$this->load->view('template/report_footer',$data);
 	}
+	
+// 	public function display_student_report_Search(){
+// 		//Search Data
+// 		$sid = $this->input->post('studentId');
+// 		$cid = $this->input->post('courseId');
+
+// 		if ($chk == "") {
+// 			$data['errorMSG'] = 2;
+// 			$data['studentID'] = "";
+// 			$data['studentName'] = "";
+// 			$data['courseName'] = "";
+// 			$data['chk_err'] = 1;
+// 		}
+			
+// 		$data['errorMSG'] = 1;
+// 		$data['studentID'] = $sid;
+// 		$assignment = array();
+// 		$exam = array();
+		
+// 		// Search Assignment
+// 		$fileName = FCPATH."application/score/assignment.txt";
+// 		if(file_exists($fileName)){
+// 			$myFile = fopen($fileName,"r") or die("Unable to open file!");
+// 			$search = array();
+// 			$count = 0;
+			
+// 			while (!feof($myFile)) {
+// 				$textLine = fgets($myFile);
+// 				$line = array();
+// 				$line = explode(",",$textLine);
+// 				if($line[0] == $sid)
+// 				{
+// 					$data['studentName'] = $line[1];
+// 					if($line[2] == $cid){
+// 						$data['courseName'] = $line[3];
+// 						$score = array('assg' => $line[4], 'score' => $line[5] );
+// 						array_push($assignment, $score);
+// 					}
+// 				}
+// 				array_push($search, explode(",",$textLine));
+// 				$count = sizeof($search);		
+// 			}
+// 			fclose($myFile);
+// 		}
+		
+// 		$data['assignment'] = $assignment;
+		
+// 		// Search Exam
+// 		$fileNameExam = FCPATH."application/score/exam.txt";
+// 		if(file_exists($fileNameExam)){
+// 			$myFile = fopen($fileNameExam,"r") or die("Unable to open file!");
+// 			$search = array();
+// 			$count = 0;
+				
+// 			while (!feof($myFile)) {
+// 				$textLine = fgets($myFile);
+// 				$line = array();
+// 				$line = explode(",",$textLine);
+// 				if($line[0] == $sid)
+// 				{
+// 					$data['studentName'] = $line[1];
+// 					if($line[2] == $cid){
+// 						$data['courseName'] = $line[3];
+// 						$score = array('exam' => $line[4], 'score' => $line[5] );
+// 						array_push($exam, $score);
+// 					}
+// 				}
+// 				array_push($search, explode(",",$textLine));
+				
+// 			}
+// 			fclose($myFile);
+// 		}
+		
+// 		$data['exam'] = $exam;
+		
+// // 		echo '<pre>';
+// // 		print_r($exam);
+// // 		exit();
+		
+// 		// return data to view
+// 		$this->load->view('template/report_header',$page_element);
+// 		$this->load->view('report/teacher_report_student',$data);
+// 		$this->load->view('template/report_footer',$data);
+// 	}
 	
 	//*******///////////////////////Course Report////////////////////////////////////
 	public function searchCourseReport(){
