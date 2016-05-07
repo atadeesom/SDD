@@ -18,7 +18,6 @@ class Dashboard extends CI_Controller{
 		{
 			// get user role id
 			$uRole = $this->session->userdata('u_role');
-			
 			if ($uRole=='01') // Administrator Page
 			{
 				$this->load->view('template/header',$this->setDataReturnToView());

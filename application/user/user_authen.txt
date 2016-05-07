@@ -1,4 +1,4 @@
-01,admin,pwd_admin,01,Administrator
+99,admin,pwd_admin,01,Administrator
 11,teacher1,teacher,02,Noraset Lecturer
 0001,student1,student,03,Samonsri A.
 0002,student2,student,03,Alexander Wang
