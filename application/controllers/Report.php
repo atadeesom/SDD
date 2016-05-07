@@ -55,7 +55,6 @@ class Report extends CI_Controller{
 	 * This function is for teacher user's role.
 	 */
 	public function display_class_report(){
-		//TODO: implement function and return data to view.
 	    $data = array();
 	    $data['courseList'] = array();
 	    
@@ -225,9 +224,13 @@ class Report extends CI_Controller{
 		
 		$data['exam'] = $exam;
 		// return data to view
-		$this->load->view('template/report_header',$page_element);
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_report_student_active'] = true;
+		$page_element['nav_report_course_active'] = false;
+		
+		$this->load->view('template/header',$page_element);
 		$this->load->view('report/teacher_report_student',$data);
-		$this->load->view('template/report_footer',$data);
+		$this->load->view('template/footer',$data);
 	}
 	
 // 	public function display_student_report_Search(){
