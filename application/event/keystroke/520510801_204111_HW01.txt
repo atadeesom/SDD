@@ -1,5 +1,5 @@
-datetime,message
-20160419 12:55:56,[{
+studentId,assignmentId,courseId,datetime,message
+520510801,204111,HW01,20160507 08:58:04,[{
 	 		"start": {"row": 0, "coloum": 0},
 	 		"end": {"row": 0, "coloum": 1},
 	 		"action": "remove",
@@ -9,4 +9,25 @@ datetime,message
 	 		"end": {"row": 0, "coloum": 1},
 	 		"action": "remove",
 	 		"lines": ["t"]
+	 	 },{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["x"]
+	 	 }]
+520510801,204111,HW01,20160507 08:58:46,[{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["s"]
+	 	 },{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["t"]
+	 	 },{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["x"]
 	 	 }]

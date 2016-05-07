@@ -11,7 +11,7 @@ class Event extends CI_Controller {
 	private $file_extension = ".txt";
 	private $file_header_security = 'datetime,user_id,user_ip,session_id,message';
 	private $file_header_application = 'datetime,user_id,user_ip,session_id,message';
-	private $file_header_stroke = 'datetime,message';
+	private $file_header_stroke = 'studentId,assignmentId,courseId,datetime,message';
 	private $newline = "\r\n";
 	
 	private $currentDate = "";
@@ -316,6 +316,11 @@ class Event extends CI_Controller {
 	 *		"end": {"row": 0, "coloum": 1},
 	 *		"action": "remove",
 	 *		"lines": ["t"]
+	 *	 },{
+	 *		"start": {"row": 0, "coloum": 0},
+	 *		"end": {"row": 0, "coloum": 1},
+	 *		"action": "remove",
+	 *		"lines": ["a"]
 	 *	 }]
 	 * }
 	 * example of output JSON
@@ -348,6 +353,11 @@ class Event extends CI_Controller {
 	 		"end": {"row": 0, "coloum": 1},
 	 		"action": "remove",
 	 		"lines": ["t"]
+	 	 },{
+	 		"start": {"row": 0, "coloum": 0},
+	 		"end": {"row": 0, "coloum": 1},
+	 		"action": "remove",
+	 		"lines": ["x"]
 	 	 }]';
 		 
 		 // Check empty element. Element must fill
@@ -355,25 +365,35 @@ class Event extends CI_Controller {
 			$path = FCPATH.'application/event/keystroke/'.$studentId.'_'.$courseId.'_'.$assignmentId.$this->file_extension;
 			
 			// Check current date file exists
-			$hasCurrentDateFile = file_exists($path);
-			// if file not exists
-			if(!$hasCurrentDateFile){
-				// create new file 
-				if (!file_put_contents ($path, $this->file_header_stroke)){
+			if(file_exists($path)){
+			    // Append data into new line.
+			    $line = $this->newline.$studentId.",".$courseId.",".$assignmentId.",".$datetime.",".$keystroke;
+			    file_put_contents($path, $line, FILE_APPEND);
+			    
+				/* if (!file_put_contents ($path, $this->file_header_stroke)){
+					// response error 
+					$resp['status_code'] = 404;
+					$resp['status_massage'] = 'Internal Error: Unable to write file content';
+					echo json_encode($resp);
+					exit();// throw from this execution
+				} */
+			}else{
+			    if (!file_put_contents ($path, $this->file_header_stroke)){
 					// response error 
 					$resp['status_code'] = 404;
 					$resp['status_massage'] = 'Internal Error: Unable to write file content';
 					echo json_encode($resp);
 					exit();// throw from this execution
 				}
-			}
-			// Append data into new line.
-			$line = $this->newline.$datetime.",".$keystroke;
-			if(!write_file($path, $line , "a+")){
-				$resp['status_code'] = 404;
-				$resp['status_massage'] = 'Internal Error: Unable to write file content';
-				echo json_encode($resp);
-				exit(); //throw from this execution
+				
+			    // Append data into new line.
+			    $line = $this->newline.$studentId.",".$courseId.",".$assignmentId.",".$datetime.",".$keystroke;
+			    if(!write_file($path, $line , "a+")){
+			        $resp['status_code'] = 404;
+			        $resp['status_massage'] = 'Internal Error: Unable to write file content';
+			        echo json_encode($resp);
+			        exit(); //throw from this execution
+			    }  
 			}
 			echo json_encode($resp);
 		}else{
