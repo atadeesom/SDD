@@ -1,3 +1,8 @@
+<?php $uid = $this->session->userdata('uid'); 
+	if(empty($uid)){
+		redirect(site_url('Home/index'));
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>

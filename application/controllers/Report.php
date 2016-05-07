@@ -161,7 +161,7 @@ class Report extends CI_Controller{
 	        }
 	        
 // 	        echo '<pre>'; 
-// 	        print_r($temp);
+// 	        print_r($assignmentScore);
 // 	        exit();
 	        
 	        //$score = array('assg' => $line[4], 'score' => $line[5] );
