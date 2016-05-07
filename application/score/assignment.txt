@@ -1,7 +1,6 @@
 0001,Samonsri,01,Software Process Improvement,01,15
 0001,Samonsri,01,Software Process Improvement,02,16
-0001,Samonsri,01,Software Process Improvement,03,18
-0001,Samonsri,01,Software Process Improvement,04,12
+0001,Samonsri,01,Software Process Improvement,03,18 
 0001,Samonsri,02,Machine Learning,01,14
 0001,Samonsri,02,Machine Learning,02,16
 0001,Samonsri,02,Machine Learning,03,18

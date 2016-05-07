@@ -19,11 +19,11 @@
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <i class="fa fa-group"></i>
-                  <h3 class="box-title">SDD1111C</h3>
+                  <h3 class="box-title"><?php echo $cid;?></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <p class="lead"><h4>Software Design and Develop</h4></p>
-                  <p class="text-aqua">Semester 1/2016</p>
+                  <p class="lead"><h4><?php echo $course['course_name']; ?></h4></p>
+                  <p class="text-aqua"><?php echo $course['lecturer']; ?></p>
                 </div>
               </div>
             </div>
@@ -95,15 +95,28 @@
          * BAR CHART
          * ---------
          */
-
-        var assignment_data = {
-          data: [["Ass1", 10], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
-          color: "#3c8dbc"
-        };
-        var exam_data = {
-          data: [["Exam1", 90], ["Exam2", 84], ["Exam3", 45], ["Exam4", 31], ["Exam5", 60], ["Exam6", 90]],
-          color: "#3c8dbc"
-        };
+		var assignment_data = null;
+         <?php 
+        	        if(isset($assignment_data) and !empty($assignment_data)){ ?>
+        	        	//alert('test');
+        	        	assignment_data = {
+        	            	data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $assignment_data, array_keys($assignment_data))) . ']' ?>,
+        	            	color: "#3c8dbc" 
+        	        	}; 
+        	    <?php 
+        	        }
+        	    ?>
+        var exam_data = null;
+        <?php 
+    	        if(isset($exam_data) and !empty($exam_data)){ ?>
+    	        	//alert('test');
+    	        	exam_data = {
+    	            	data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $exam_data, array_keys($exam_data))) . ']' ?>,
+    	            	color: "#3c8dbc" 
+    	        	}; 
+    	    <?php 
+    	        }
+    	    ?>
 
         /* ASSINMENT SCORE */
         $.plot("#ass-chart", [assignment_data], {

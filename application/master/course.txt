@@ -1,3 +1,3 @@
 01,Software Process Improvement,Chanapan Roj
-02,Machine Learning,Chanapan Roj
-03,Intro to Programming Language,Chanapan Roj
+02,Machine Learning,Alexander MM
+03,Intro to Programming Language,Donna Salz

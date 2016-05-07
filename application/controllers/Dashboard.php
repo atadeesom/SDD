@@ -11,6 +11,9 @@ class Dashboard extends CI_Controller{
 		}
 		$uid = $this->session->userdata('uid');
 		$data = array(); 
+		
+		// load Model to method
+		$this->load->model('Course');
 		if($uid != null)
 		{
 			// get user role id
@@ -31,6 +34,8 @@ class Dashboard extends CI_Controller{
 			}
 			else if($uRole == '03') // Student View
 			{
+				$data['course_list'] = $this->Course->getCourseDetialList(); 
+				$data['sid'] = $uid;
 				$this->load->view('template/header',$this->setDataReturnToView());
 				$this->load->view('dashboard/student_dash',$data);
 				$this->load->view('template/footer',$data);
@@ -38,21 +43,34 @@ class Dashboard extends CI_Controller{
 		}
 	}
 	
-	public function course($cid = 0){
+	public function course($cid = 0, $sid = 0){
 		
 		// Load Model in this controller
 		$this->load->model('Assignment');
 		$this->load->model('Course');
 		$this->load->model('Exam');
 		
-		$data['assignment_list'] = $this->Assignment->getAssignmentDetailList($cid);
-		$data['course'] = $this->Course->getCourseDetail($cid);
-		$data['exam_list'] = $this->Exam->setExamDetailList($cid);
-		$data['cid'] = $cid;
+		if($sid ==0) // set up data for teacher
+		{
+			$data['assignment_list'] = $this->Assignment->getAssignmentDetailList($cid);
+			$data['course'] = $this->Course->getCourseDetail($cid);
+			$data['exam_list'] = $this->Exam->setExamDetailList($cid);
+			$data['cid'] = $cid;
+			
+			$this->load->view('template/header',$this->setDataReturnToView());
+			$this->load->view('dashboard/teacher_dash_class',$data);
+			$this->load->view('template/footer',$data);
+		}else{ // set up data for student
+			$data['course'] = $this->Course->getCourseDetail($cid);
+			$data['cid'] = $cid;
+			$data['assignment_data'] = $this->Assignment->getAssignmentScoreGraphData($cid,$sid);
+			$data['exam_data'] = $this->Exam->getExamScoreGraphData($cid,$sid);
+			
+			$this->load->view('template/header',$this->setDataReturnToView());
+			$this->load->view('dashboard/student_dash_class',$data);
+			$this->load->view('template/footer',$data);
+		}
 		
-		$this->load->view('template/header',$this->setDataReturnToView());
-		$this->load->view('dashboard/teacher_dash_class',$data);
-		$this->load->view('template/footer',$data);
 	}
 	
 	public function assignment($cid = 0, $assid = 0){

@@ -38,108 +38,24 @@
         </div><!-- /.row -->
         <div class="row">
           <!-- Class Info boxes -->
+          <?php foreach ($course_list as $course){?>
             <div class="col-md-4">
               <!-- Widget: Class widget style 1 -->
               <div class="box box-widget widget-user-2">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-yellow">
-                  <h3 class="widget-user-username">Fundamental Programming 1</h3>
-                  <h5 class="widget-user-desc">Section 1</h5>
-                  <h5 class="widget-user-desc">Semester 1/2016</h5>
+                  <h3 class="widget-user-username"><?php echo $course['course_name']; ?></h3>
+                  <h5 class="widget-user-desc">Code: <?php echo $cid; ?></h5>
+                  <h5 class="widget-user-desc"><?php echo $course['lecturer']; ?></h5>
                 </div>
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
-                    <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
+                    <li><a href="<?php echo site_url('Dashboard/course/'.$course['cid'].'/'.$sid)?>">Details</a></li>
                   </ul>
                 </div>
               </div><!-- /.widget-Class -->
             </div><!-- /.col -->
-            <div class="col-md-4">
-              <!-- Widget: Class widget style 1 -->
-              <div class="box box-widget widget-user-2">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-blue">
-                  <h3 class="widget-user-username">Fundamental Programming 1</h3>
-                  <h5 class="widget-user-desc">Section 5</h5>
-                  <h5 class="widget-user-desc">Semester 1/2016</h5>
-                </div>
-                <div class="box-footer no-padding">
-                  <ul class="nav nav-stacked">
-                    <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
-                  </ul>
-                </div>
-              </div><!-- /.widget-Class -->
-            </div><!-- /.col -->
-            <div class="col-md-4">
-              <!-- Widget: Class widget style 1 -->
-              <div class="box box-widget widget-user-2">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-orange">
-                  <h3 class="widget-user-username">Fundamental Programming 1</h3>
-                  <h5 class="widget-user-desc">Section 1</h5>
-                  <h5 class="widget-user-desc">Semester 1/2015</h5>
-                </div>
-                <div class="box-footer no-padding">
-                  <ul class="nav nav-stacked">
-                    <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
-                  </ul>
-                </div>
-              </div><!-- /.widget-Class -->
-            </div><!-- /.col -->
-            <div class="col-md-4">
-              <!-- Widget: Class widget style 1 -->
-              <div class="box box-widget widget-user-2">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-green">
-                  <h3 class="widget-user-username">Fundamental Programming 1</h3>
-                  <h5 class="widget-user-desc">Section 1</h5>
-                  <h5 class="widget-user-desc">Semester 1/2015</h5>
-                </div>
-                <div class="box-footer no-padding">
-                  <ul class="nav nav-stacked">
-                    <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
-                  </ul>
-                </div>
-              </div><!-- /.widget-Class -->
-            </div><!-- /.col -->
-            <div class="col-md-4">
-              <!-- Widget: Class widget style 1 -->
-              <div class="box box-widget widget-user-2">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-teal">
-                  <h3 class="widget-user-username">Fundamental Programming 1</h3>
-                  <h5 class="widget-user-desc">Section 1</h5>
-                  <h5 class="widget-user-desc">Semester 1/2015</h5>
-                </div>
-                <div class="box-footer no-padding">
-                  <ul class="nav nav-stacked">
-                    <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
-                  </ul>
-                </div>
-              </div><!-- /.widget-Class -->
-            </div><!-- /.col -->
-            <div class="col-md-4">
-              <!-- Widget: Class widget style 1 -->
-              <div class="box box-widget widget-user-2">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-maroon">
-                  <h3 class="widget-user-username">Fundamental Programming 1</h3>
-                  <h5 class="widget-user-desc">Section 1</h5>
-                  <h5 class="widget-user-desc">Semester 1/2015</h5>
-                </div>
-                <div class="box-footer no-padding">
-                  <ul class="nav nav-stacked">
-                    <li><a href="#">Assignments <span class="pull-right badge bg-aqua">5</span></a></li>
-                    <li><a href="#">Exams <span class="pull-right badge bg-red">1</span></a></li>
-                  </ul>
-                </div>
-              </div><!-- /.widget-Class -->
-            </div><!-- /.col -->
+           <?php }?>
         </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
