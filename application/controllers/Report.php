@@ -323,82 +323,22 @@ class Report extends CI_Controller{
         // Load Model in this action of controller
         $this->load->model('Assignment');
         $this->load->model('Exam');
-         
+        
+        $assignmentScoreReport = array();
+        $examScoreReport = array();
         //******* Start: Get Assignment Report ********//
         $assignments = $this->Assignment->getAssignmentDetailList($course);
-        $assignmentScorePerson = array();
-        $noOfstudent = array();
         foreach($assignments as $vals){
-            $assId = $vals['ass_id'];
-            $assignment_details = $this->Assignment->getAssignmentScoreList($course,$assId);
-             
-            foreach($assignment_details as $detail){
-                array_push($assignmentScorePerson, array('assignmentName' => $vals['ass_name'], 'score' => $detail['score']));
-                array_push($noOfstudent, array('assignmentName' => $vals['ass_name'], 'student' => $detail['sid']));
-            }
-        }
-         
-        $res  = array();
-        foreach($assignmentScorePerson as $vals){
-            if(array_key_exists($vals['assignmentName'], $res)){
-                $res[$vals['assignmentName']]['score']           += $vals['score'];
-                $res[$vals['assignmentName']]['assignmentName']  = $vals['assignmentName'];
-            }else{
-                $res[$vals['assignmentName']]  = $vals;
-            }
-        }
-         
-        $noOfStudentPerAssignment = array();
-        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'assignmentName'));
-         
-        foreach($res as $vals){
-            $assignmentName = $vals['assignmentName'];
-            $totalScore = $vals['score'];
-            $noOfStudent = $noOfStudentPerAssignment[$vals['assignmentName']];
-        
-            // Graph Data should be provide by using this kind of array.
-            $assignmentScoreReport[$assignmentName] = ($totalScore/$noOfStudent);
+            $scoreData = $this->Assignment->getAssignmentScoreGraphReportData($course,$vals['ass_id']);
+            $assignmentScoreReport[$vals['ass_name']] = $scoreData;
         }
         //******* End: Get Assignment Report ********//
-         
-        //******* Start: Get Exam Report ********//
-        $examDetailList = $this->Exam->setExamDetailList($course);
-        $examScorePerson = array();
-         
-        unset($noOfstudent);
-        $noOfstudent = array();
-        foreach($examDetailList as $vals){
-            $examId = $vals['exam_id'];
-            $exam_score_details = $this->Exam->getExamScore($course,$examId);
         
-            foreach($exam_score_details as $detail){
-                array_push($examScorePerson, array('examName' => $vals['exam_name'], 'score' => $detail['score']));
-                array_push($noOfstudent, array('examName' => $vals['exam_name'], 'student' => $detail['sid']));
-            }
-        }
-         
-        $res  = array();
-        foreach($examScorePerson as $vals){
-            // Groupping exam's score
-            if(array_key_exists($vals['examName'], $res)){
-                $res[$vals['examName']]['score']     += $vals['score'];
-                $res[$vals['examName']]['examName']  = $vals['examName'];
-            }else{
-                $res[$vals['examName']]  = $vals;
-            }
-        }
-         
-        unset($noOfStudentPerAssignment);
-        $noOfStudentPerAssignment = array();
-        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'examName'));
-         
-        foreach($res as $vals){
-            $assignmentName = $vals['examName'];
-            $totalScore = $vals['score'];
-            $noOfStudent = $noOfStudentPerAssignment[$vals['examName']];
-             
-            // Graph Data should be provide by using this kind of array.
-            $examScoreReport[$assignmentName] = ($totalScore/$noOfStudent);
+        //******* Start: Get Exam Report ********//
+        $exams = $this->Exam->setExamDetailList($course);
+        foreach($exams as $vals){
+            $scoreData = $this->Exam->getExamScoreGraphReportData($course,$vals['exam_id']);
+            $examScoreReport[$vals['exam_name']] = $scoreData;
         }
         //******* End: Get Exam Report ********//
         

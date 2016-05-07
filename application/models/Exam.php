@@ -101,4 +101,28 @@ class Exam extends CI_Model{
 			echo 'error setExamList';
 		}
 	}
+	
+	public function getExamScoreGraphReportData($cid = 0, $exam_id = 0){
+	    $fileName = FCPATH."application/score/exam.txt";
+	    $noOfStudent = 0;
+	    $score = 0;
+	    if(file_exists($fileName)){
+	        $myFile = fopen($fileName,"r") or die("Unable to open file!");
+	        while (!feof($myFile)) {
+	            $textLine = fgets($myFile);
+	            $line = array();
+	            $line = explode(",",$textLine);
+	
+	            if($line[2] == $cid and $line[4] == $exam_id){
+	                $score += (int)$line[5];
+	                $noOfStudent += 1;
+	            }
+	        }
+	        //close file
+	        fclose($myFile);
+	        return $score/$noOfStudent;
+	    }else{
+	        echo 'error setAssignmentList';
+	    }
+	}
 }

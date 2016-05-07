@@ -106,4 +106,36 @@ class Assignment extends CI_Model{
     	}
     }
    
+    public function getAssignmentScoreGraphReportData($cid = 0, $assid = 0){
+        $fileName = FCPATH."application/score/assignment.txt";
+        $noOfStudent = 0;      
+        $score = 0;
+        if(file_exists($fileName)){
+            $myFile = fopen($fileName,"r") or die("Unable to open file!");
+            while (!feof($myFile)) {
+                $textLine = fgets($myFile);
+                $line = array();
+                $line = explode(",",$textLine);
+                
+                /* if($line[2] == $cid && $line[4] == $assid){
+                    $assignment = array(
+                            'sid' => $line[0],
+                            's_name' => $line[1],
+                            'score' => $line[5]
+                    );
+                    array_push($ReportData, $assignment);
+                } */
+                
+                if($line[2] == $cid and $line[4] == $assid){
+                    $score += (int)$line[5];
+                    $noOfStudent += 1;
+                }
+            }
+            //close file            
+            fclose($myFile);
+            return $score/$noOfStudent;
+        }else{
+            echo 'error setAssignmentList';
+        }
+    }
 }
