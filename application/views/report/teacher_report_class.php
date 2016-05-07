@@ -23,7 +23,8 @@
                 	<h3 class="box-title">Search Criteria</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form id="courseReportForm" action="display_class_report" method="post" onload="init();">
+                <form id="courseReportForm" action="display_class_report" method="post" onload="">
+                	<input type="hidden" id="methodName" name="methodName" value="init"/>
                     <div class="box-body">
                         <div class="form-group">
                           	<label>Course: </label>
@@ -37,7 +38,7 @@
                     </div><!-- /.box-body -->
                   	<div class="box-footer">
                   	    <button class="btn bg-blue btn-flat btn-block" type="submit" onclick ="submitform();">Search</button>
-                    	<button class="btn bg-maroon btn-flat btn-block" type="clear">Clear</button>
+                    	<button class="btn bg-maroon btn-flat btn-block" type="clear" onclick="clear();">Clear</button>
                   	</div>
                 </form>
                 </div><!-- /.box -->
@@ -121,14 +122,14 @@
 </div><!-- /.content-wrapper -->
 
 <script type="text/javascript">
-	function init(){
-		var selectedCourse = <?php empty($selectedCourse)? "": $selectedCourse ?>;
-		document.getElementById("selectedCourse").value = selectedCourse;
-		alert(selectedCourse);
-	}
-
     function submitform(){
+    	document.getElementById("methodName").value = "search";
 		document.getElementById("courseReportForm").submit();
+    }
+
+    function clear(){
+    	document.getElementById("methodName").value = "clear";
+    	document.getElementById("courseReportForm").submit();
     }
     
     function errorMSG(){
@@ -144,6 +145,7 @@
      * ---------
      */
 	var assignment_data  = null;
+	var exam_data = null;
     <?php 
         if(isset($assignment_data) and !empty($assignment_data)){ ?>
         	//alert('test');
@@ -153,12 +155,14 @@
         	}; 
     <?php 
         }
+        if(isset($exam_data) and !empty($exam_data)){ ?>
+            exam_data = {
+            	data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $assignment_data, array_keys($exam_data))) . ']' ?>,
+    			color: "#3c8dbc"
+            }
+   <?php 
+        }
     ?>
-    
-    var exam_data = {
-      data: [["Exam1", 90], ["Exam2", 84], ["Exam3", 45], ["Exam4", 31], ["Exam5", 60], ["Exam6", 90]],
-      color: "#3c8dbc"
-    };
 
     /* ASSINMENT SCORE */
     if(null != assignment_data){
@@ -184,25 +188,28 @@
     }
 
     /* Exam SCORE */
-    $.plot("#exam-chart", [exam_data], {
-      grid: {
-        hoverable: true,
-        borderWidth: 1,
-        borderColor: "#f3f3f3",
-        tickColor: "#f3f3f3"
-      },
-      series: {
-        bars: {
-          show: true,
-          barWidth: 0.5,
-          align: "center"
-        }
-      },
-      xaxis: {
-        mode: "categories",
-        tickLength: 0
-      },
-    });
+    if(null != exam_data){
+    	$.plot("#exam-chart", [exam_data], {
+	      grid: {
+	        hoverable: true,
+	        borderWidth: 1,
+	        borderColor: "#f3f3f3",
+	        tickColor: "#f3f3f3"
+	      },
+	      series: {
+	        bars: {
+	          show: true,
+	          barWidth: 0.5,
+	          align: "center"
+	        }
+	      },
+	      xaxis: {
+	        mode: "categories",
+	        tickLength: 0
+	      },
+	    });
+    }
+    
     /* END BAR CHART */
 
     //Initialize tooltip on hover
