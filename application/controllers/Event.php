@@ -31,7 +31,7 @@ class Event extends CI_Controller {
 	    
 	    $page_element['title'] = 'Event';
 	    $page_element['screenName'] = 'Event';
-	    $page_element['user_full_name'] = 'Nadech Kugimiya';
+	    //$page_element['user_full_name'] = 'Nadech Kugimiya';
 	    
 	    // set user variable
 	    $uid = $this->session->userdata('uid');

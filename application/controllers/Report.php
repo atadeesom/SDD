@@ -23,6 +23,7 @@ class Report extends CI_Controller{
     
         $page_element['title'] = 'Report';
         $page_element['screenName'] = 'Report';
+        //$page_element['user_full_name'] = 'Nadech Kugimiya';
         
         // set user variable
         $uid = $this->session->userdata('uid');

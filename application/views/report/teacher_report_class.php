@@ -143,36 +143,45 @@
      * BAR CHART
      * ---------
      */
-
-    var assignment_data = {
-      data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $assignment_data, array_keys($assignment_data))) . ']' ?>,
-      color: "#3c8dbc"
-    };
+	var assignment_data  = null;
+    <?php 
+        if(isset($assignment_data) and !empty($assignment_data)){ ?>
+        	//alert('test');
+        	assignment_data = {
+            	data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $assignment_data, array_keys($assignment_data))) . ']' ?>,
+            	color: "#3c8dbc" 
+        	}; 
+    <?php 
+        }
+    ?>
+    
     var exam_data = {
       data: [["Exam1", 90], ["Exam2", 84], ["Exam3", 45], ["Exam4", 31], ["Exam5", 60], ["Exam6", 90]],
       color: "#3c8dbc"
     };
 
     /* ASSINMENT SCORE */
-    $.plot("#ass-chart", [assignment_data], {
-      grid: {
-        hoverable: true,
-        borderWidth: 1,
-        borderColor: "#f3f3f3",
-        tickColor: "#f3f3f3"
-      },
-      series: {
-        bars: {
-          show: true,
-          barWidth: 0.5,
-          align: "center"
-        }
-      },
-      xaxis: {
-        mode: "categories",
-        tickLength: 0
-      }
-    });
+    if(null != assignment_data){
+    	$.plot("#ass-chart", [assignment_data], {
+	      grid: {
+	        hoverable: true,
+	        borderWidth: 1,
+	        borderColor: "#f3f3f3",
+	        tickColor: "#f3f3f3"
+	      },
+	      series: {
+	        bars: {
+	          show: true,
+	          barWidth: 0.5,
+	          align: "center"
+	        }
+	      },
+	      xaxis: {
+	        mode: "categories",
+	        tickLength: 0
+	      }
+	    });
+    }
 
     /* Exam SCORE */
     $.plot("#exam-chart", [exam_data], {
