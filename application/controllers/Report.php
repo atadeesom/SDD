@@ -23,7 +23,6 @@ class Report extends CI_Controller{
     
         $page_element['title'] = 'Report';
         $page_element['screenName'] = 'Report';
-        //$page_element['user_full_name'] = 'Nadech Kugimiya';
         
         // set user variable
         $uid = $this->session->userdata('uid');
@@ -31,9 +30,7 @@ class Report extends CI_Controller{
         	$page_element['user_full_name'] = $this->session->userdata('full_name');
         	$uRole = $this->session->userdata('u_role');
         	$page_element['user_role'] = $uRole == '01' ? 'Administrator' : $uRole == '02' ? 'Teacher' : 'Student';
-        		
         }
-    
         return $page_element;
     }
     
@@ -58,7 +55,6 @@ class Report extends CI_Controller{
 	 * This function is for teacher user's role.
 	 */
 	public function display_class_report(){
-		//TODO: implement function and return data to view.
 	    $data = array();
 	    $data['courseList'] = array();
 	    
@@ -71,113 +67,50 @@ class Report extends CI_Controller{
 	            array_push($courses, explode(",",$textLine));
 	        }
 	        fclose($myFile);
-	        $data['courseList'] = $courses;
 	    }else{
 	        echo 'error';
 	    }
 	    
 	    //Search Data
-	    $assignmentScore = array();
+	    $assignmentScoreReport = array();
+	    $examScoreReport = array();
 	    $courseDetail = array();
-	    $course = $this->input->post('selectedCourse');
-	    if(empty($course)) {
-	        $data['errorMSG'] = TRUE;
+	    
+	    $method = $this->input->post('methodName');
+	    if('search' == $method){
+	        $course = $this->input->post('selectedCourse');
 	        $data['selectedCourse'] = $course;
+	         
+	        if(empty($course)) {
+	            $data['errorMSG'] = TRUE;
+	            $data['lecturer'] = "";
+	            $data['courseName'] = "";
+	        }else{
+	            //Get Course Detail for display
+	            for($i = 0; $i <= count($courses)-1; $i++){
+	                if($course == $courses[$i][0]){
+	                    $courseDetail = array($courses[$i][1], $courses[$i][2]);
+	                    break;
+	                }
+	            }
+	            $data = $this -> searchCourseReport($course);
+	            $data['courseDetail'] = $courseDetail;
+	        }
+	    }else if('clear' == $method){
+	        unset($assignmentScoreReport);
+	        unset($examScoreReport);
+	        unset($courseDetail);
 	        $data['lecturer'] = "";
 	        $data['courseName'] = "";
-	    }else{
-	        $data['errorMSG'] = FALSE;
-	        $data['selectedCourse'] = $course;
-	        
-	        for($i = 0; $i <= count($courses)-1; $i++){
-	            if($course == $courses[$i][0]){
-	                $courseDetail = array($courses[$i][1], $courses[$i][2]);
-	                break;
-	            }
-	        }
-	           
-	         
-	        /* $assignment = array();
-	        // Search Assignment
-	        $fileName = FCPATH."application/score/assignment.txt";
-	        if(file_exists($fileName)){
-	            $myFile = fopen($fileName,"r") or die("Unable to open file!");
-	            $search = array();
-	             
-	            while (!feof($myFile)) {
-    				$textLine = fgets($myFile);
-    				$line = array();
-    				$line = explode(",",$textLine);
-    				if($line[0] == $sid)
-    				{
-    				    $data2['studentName'] = $line[1];
-    				    if($line[2] == $cid){
-    				        $data2['courseName'] = $line[3];
-    				        $score = array('assg' => $line[4], 'score' => $line[5] );
-    				        array_push($assignment, $score);
-    				    }
-    				}
-    				array_push($search, explode(",",$textLine));
-	            }
-	            fclose($myFile);
-	        }
-	        $data = $data2; */
-	        
-	        $array = array();
-	        $noOfstudent = array();
-	        $fileName = FCPATH."application/score/assignment.txt";
-	        if(file_exists($fileName)){
-	            $myFile = fopen($fileName,"r") or die("Unable to open file!");
-	            while(!feof($myFile)){
-	                $textLine = fgets($myFile);
-	                $line = array();
-	                $line = explode("," , $textLine);
-	                array_push($array, array('assignmentCd' => $line[3], 'score' => $line[5]));
-	                array_push($noOfstudent, array('assignmentCd' => $line[3], 'student' => $line[0]));
-	            }
-	            fclose($myFile);
-	        }
-	        
-	        $res  = array();
-	        foreach($array as $vals){
-	            if(array_key_exists($vals['assignmentCd'], $res)){
-	                $res[$vals['assignmentCd']]['score']           += $vals['score'];
-	                $res[$vals['assignmentCd']]['assignmentCd']    = $vals['assignmentCd'];
-	            }else{
-	                $res[$vals['assignmentCd']]  = $vals;
-	            }
-	        }
-	        
-	        $noOfStudentPerAssignment = array();
-	        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'assignmentCd'));
-	        
-	        foreach($res as $vals){
-	            $courseName = $vals['assignmentCd'];
-	            $totalScore = $vals['score'];
-	            $noOfStudent = $noOfStudentPerAssignment[$courseName];
-	            
-	            // Graph Data should be provide by using this kind of array.
-	            $assignmentScore[$courseName] = ($totalScore/$noOfStudent);
-	        }
-	        
-// 	        echo '<pre>'; 
-// 	        print_r($assignmentScore);
-// 	        exit();
-	        
-	        //$score = array('assg' => $line[4], 'score' => $line[5] );
-	        //array_push($assignment, $score);
-	        
 	    }
 	    
+	    $data['courseList'] = $courses;
+	    
+	    // return data to view
 		$page_element = $this->setDataReturnToView();
 		$page_element['nav_report_student_active'] = false;
 		$page_element['nav_report_course_active'] = true;
-	    
-		$data['selectedCourse'] = $course;
-		$data['courseDetail'] = $courseDetail;
-		$data['assignment_data'] = $assignmentScore;
 		
-	    // return data to view
 	    $this->load->view('template/header',$page_element);
 	    $this->load->view('report/teacher_report_class',$data);
 	    $this->load->view('template/footer',$data);
@@ -291,9 +224,13 @@ class Report extends CI_Controller{
 		
 		$data['exam'] = $exam;
 		// return data to view
-		$this->load->view('template/report_header',$page_element);
+		$page_element = $this->setDataReturnToView();
+		$page_element['nav_report_student_active'] = true;
+		$page_element['nav_report_course_active'] = false;
+		
+		$this->load->view('template/header',$page_element);
 		$this->load->view('report/teacher_report_student',$data);
-		$this->load->view('template/report_footer',$data);
+		$this->load->view('template/footer',$data);
 	}
 	
 // 	public function display_student_report_Search(){
@@ -379,9 +316,94 @@ class Report extends CI_Controller{
 // 		$this->load->view('report/teacher_report_student',$data);
 // 		$this->load->view('template/report_footer',$data);
 // 	}
-	
-	//*******///////////////////////Course Report////////////////////////////////////
-	public function searchCourseReport(){
-	    
-	}
+
+    public function searchCourseReport($course){
+        $data['errorMSG'] = FALSE;
+        
+        // Load Model in this action of controller
+        $this->load->model('Assignment');
+        $this->load->model('Exam');
+         
+        //******* Start: Get Assignment Report ********//
+        $assignments = $this->Assignment->getAssignmentDetailList($course);
+        $assignmentScorePerson = array();
+        $noOfstudent = array();
+        foreach($assignments as $vals){
+            $assId = $vals['ass_id'];
+            $assignment_details = $this->Assignment->getAssignmentScoreList($course,$assId);
+             
+            foreach($assignment_details as $detail){
+                array_push($assignmentScorePerson, array('assignmentName' => $vals['ass_name'], 'score' => $detail['score']));
+                array_push($noOfstudent, array('assignmentName' => $vals['ass_name'], 'student' => $detail['sid']));
+            }
+        }
+         
+        $res  = array();
+        foreach($assignmentScorePerson as $vals){
+            if(array_key_exists($vals['assignmentName'], $res)){
+                $res[$vals['assignmentName']]['score']           += $vals['score'];
+                $res[$vals['assignmentName']]['assignmentName']  = $vals['assignmentName'];
+            }else{
+                $res[$vals['assignmentName']]  = $vals;
+            }
+        }
+         
+        $noOfStudentPerAssignment = array();
+        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'assignmentName'));
+         
+        foreach($res as $vals){
+            $assignmentName = $vals['assignmentName'];
+            $totalScore = $vals['score'];
+            $noOfStudent = $noOfStudentPerAssignment[$vals['assignmentName']];
+        
+            // Graph Data should be provide by using this kind of array.
+            $assignmentScoreReport[$assignmentName] = ($totalScore/$noOfStudent);
+        }
+        //******* End: Get Assignment Report ********//
+         
+        //******* Start: Get Exam Report ********//
+        $examDetailList = $this->Exam->setExamDetailList($course);
+        $examScorePerson = array();
+         
+        unset($noOfstudent);
+        $noOfstudent = array();
+        foreach($examDetailList as $vals){
+            $examId = $vals['exam_id'];
+            $exam_score_details = $this->Exam->getExamScore($course,$examId);
+        
+            foreach($exam_score_details as $detail){
+                array_push($examScorePerson, array('examName' => $vals['exam_name'], 'score' => $detail['score']));
+                array_push($noOfstudent, array('examName' => $vals['exam_name'], 'student' => $detail['sid']));
+            }
+        }
+         
+        $res  = array();
+        foreach($examScorePerson as $vals){
+            // Groupping exam's score
+            if(array_key_exists($vals['examName'], $res)){
+                $res[$vals['examName']]['score']     += $vals['score'];
+                $res[$vals['examName']]['examName']  = $vals['examName'];
+            }else{
+                $res[$vals['examName']]  = $vals;
+            }
+        }
+         
+        unset($noOfStudentPerAssignment);
+        $noOfStudentPerAssignment = array();
+        $noOfStudentPerAssignment = array_count_values(array_column($noOfstudent, 'examName'));
+         
+        foreach($res as $vals){
+            $assignmentName = $vals['examName'];
+            $totalScore = $vals['score'];
+            $noOfStudent = $noOfStudentPerAssignment[$vals['examName']];
+             
+            // Graph Data should be provide by using this kind of array.
+            $examScoreReport[$assignmentName] = ($totalScore/$noOfStudent);
+        }
+        //******* End: Get Exam Report ********//
+        
+        $data['assignment_data'] = $assignmentScoreReport;
+        $data['exam_data'] = $examScoreReport;
+        return $data;
+    }
 }
