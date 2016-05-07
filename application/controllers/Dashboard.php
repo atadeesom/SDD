@@ -39,9 +39,15 @@ class Dashboard extends CI_Controller{
 	}
 	
 	public function course($cid = 0){
-		$data['assignment_list'] = $this->setAssignmentList($cid);
-		$data['course'] = $this->getCourse($cid);
-		$data['exam_list'] = $this->setExamList($cid);
+		
+		// Load Model in this controller
+		$this->load->model('Assignment');
+		$this->load->model('Course');
+		$this->load->model('Exam');
+		
+		$data['assignment_list'] = $this->Assignment->getAssignmentDetailList($cid);
+		$data['course'] = $this->Course->getCourseDetail($cid);
+		$data['exam_list'] = $this->Exam->setExamDetailList($cid);
 		$data['cid'] = $cid;
 		
 		$this->load->view('template/header',$this->setDataReturnToView());
@@ -50,9 +56,13 @@ class Dashboard extends CI_Controller{
 	}
 	
 	public function assignment($cid = 0, $assid = 0){
-		$data['assignments'] = $this->getAssignment($cid,$assid);
-		$data['course'] = $this->getCourse($cid);
-		$data['assignment_details'] = $this->getAssignmentMaster($cid,$assid);
+		// Load Model in this action of controller
+		$this->load->model('Assignment');
+		$this->load->model('Course');
+		
+		$data['assignments'] = $this->Assignment->getAssignmentScoreList($cid,$assid);
+		$data['course'] = $this->Course->getCourseDetail($cid);
+		$data['assignment_details'] = $this->Assignment->getAssignmentDetail($cid,$assid);
 		
 		$this->load->view('template/header',$this->setDataReturnToView());
 		$this->load->view('dashboard/teacher_dash_assignment',$data);
@@ -61,10 +71,15 @@ class Dashboard extends CI_Controller{
 	
 	public function exam($cid = 0, $eid = 0)
 	{
-		$data['assignment_list'] = $this->setAssignmentList($cid);
-		$data['course'] = $this->getCourse($cid);
-		$data['exams'] = $this->getExams($cid,$eid);
-		$data['exam_detail'] = $this->getExamMaster($cid,$eid);
+		// Load Model in this controller
+		$this->load->model('Assignment');
+		$this->load->model('Course');
+		$this->load->model('Exam');
+		
+		$data['assignment_list'] = $this->Assignment->getAssignmentDetailList($cid);
+		$data['course'] = $this->Course->getCourseDetail($cid);
+		$data['exams'] = $this->Exam->getExamScore($cid,$eid);
+		$data['exam_detail'] = $this->Exam->getExamDetail($cid,$eid);
 		
 		$this->load->view('template/header',$this->setDataReturnToView());
 		$this->load->view('dashboard/teacher_dash_exam',$data);
@@ -138,96 +153,14 @@ class Dashboard extends CI_Controller{
 		return $page_element;
 	}
 	
-	private function getCourseList()
-	{
-		$fileName = FCPATH."application/master/course.txt";
-		$courses = array();
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				$course = array(
-							'cid' => $line[0],
-							'course_name' => $line[1],
-							'lecturer' => $line[2]
-							);
-				array_push($courses, $course);
-			}
-			fclose($myFile);
-			return $courses;
-		}else{
-			echo 'error getCourseList';
-		}
-	}
-	private function getCourse($cid = 0)
-	{
-		$fileName = FCPATH."application/master/course.txt";
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0]==$cid){
-					$course = array(
-						'cid' => $line[0],
-						'course_name' => $line[1],
-						'lecturer' => $line[2]
-					);
-				}
-			}
-			fclose($myFile);
-			return $course;
-		}else{
-			echo 'error getCourseList';
-		}
-	}
-	
-	private function getCourseStudent($cid = 0)
-	{
-		$fileName = FCPATH."application/score/assignment.txt";
-		$students = array();
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[2]==$cid)
-				{
-					$student = array(
-							'sid' => $line[0],
-							'student_name' => $line[1]
-					);
-					array_push($students, $student);
-				}
-			}
-			fclose($myFile);
-			$arr = array();
-			
-			foreach($students as $key => $item)
-			{
-				$arr[$item['sid']][$key] = $item;
-			}
-			
-			ksort($arr, SORT_NUMERIC);
-			
-			return $arr;
-			
-		}else{
-			echo 'error getCourseStudent';
-		}
-	}
-	
 	private function setTeacherData()
 	{
-		$courses = $this->getCourseList();
+		$this->load->model('Course');
+		$courses = $this->Course->getCourseDetialList();
 		
 		foreach ($courses as $key => $course)
 		{
-			$student_amount = count($this->getCourseStudent($course['cid']));
+			$student_amount = count($this->Course->getCourseStudent($course['cid']));
 			$courses[$key]['student_amount'] = $student_amount;
 		}
 		
@@ -236,154 +169,4 @@ class Dashboard extends CI_Controller{
 		return $data;
 	}
 	
-	private function setAssignmentList($cid = 0)
-	{
-		$fileName = FCPATH."application/master/assignment.txt";
-		$assignments = array();
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $cid){
-					$assignment = array(
-						'ass_id' => $line[1],
-						'ass_name' => $line[2],
-						'ass_detail' => $line[3]
-					);
-					array_push($assignments, $assignment);
-				}
-			}
-			fclose($myFile);
-			return $assignments;
-		}else{
-			echo 'error setAssignmentList';
-		}
-	}
-	
-	private function getAssignmentMaster($cid = 0, $assid = 0)
-	{
-		$fileName = FCPATH."application/master/assignment.txt";
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $cid && $assid == $line[1]){
-					$assignment = array(
-							'ass_id' => $line[1],
-							'ass_name' => $line[2],
-							'ass_detail' => $line[3]
-					);
-				}
-			}
-			fclose($myFile);
-			return $assignment;
-		}else{
-			echo 'error setAssignmentList';
-		}
-	}
-	
-	private function getAssignment($cid = 0, $assid = 0)
-	{
-		$fileName = FCPATH."application/score/assignment.txt";
-		$assignments = array();
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[2] == $cid && $line[4] == $assid){
-					$assignment = array(
-							'sid' => $line[0],
-							's_name' => $line[1],
-							'score' => $line[5]
-					);
-					array_push($assignments, $assignment);
-				}
-			}
-			fclose($myFile);
-			return $assignments;
-		}else{
-			echo 'error setAssignmentList';
-		}
-	}
-	
-	private function setExamList($cid = 0)
-	{
-		$fileName = FCPATH."application/master/exam.txt";
-		$exams = array();
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $cid){
-					$exam = array(
-							'exam_id' => $line[1],
-							'exam_name' => $line[2],
-							'exam_detail' => $line[3]
-					);
-					array_push($exams, $exam);
-				}
-			}
-			fclose($myFile);
-			return $exams;
-		}else{
-			echo 'error setExamList';
-		}
-	}
-	
-	private function getExamMaster($cid = 0, $exam_id = 0)
-	{
-		$fileName = FCPATH."application/master/exam.txt";
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $cid && $line[1] == $exam_id){
-					$exam = array(
-							'exam_id' => $line[1],
-							'exam_name' => $line[2],
-							'exam_detail' => $line[3]
-					);
-				}
-			}
-			fclose($myFile);
-			return $exam;
-		}else{
-			echo 'error setExamList';
-		}
-	}
-	private function getExams($cid = 0, $exam_id = 0)
-	{
-		$fileName = FCPATH."application/score/exam.txt";
-		$exams = array();
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[2] == $cid && $line[4] == $exam_id){
-					$exam = array(
-							'sid' => $line[0],
-							's_name' => $line[1],
-							'score' => $line[5]
-					);
-					array_push($exams, $exam);
-				}
-			}
-			fclose($myFile);
-			return $exams;
-		}else{
-			echo 'error setExamList';
-		}
-	}
 }
