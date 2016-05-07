@@ -117,15 +117,6 @@ class Assignment extends CI_Model{
                 $line = array();
                 $line = explode(",",$textLine);
                 
-                /* if($line[2] == $cid && $line[4] == $assid){
-                    $assignment = array(
-                            'sid' => $line[0],
-                            's_name' => $line[1],
-                            'score' => $line[5]
-                    );
-                    array_push($ReportData, $assignment);
-                } */
-                
                 if($line[2] == $cid and $line[4] == $assid){
                     $score += (int)$line[5];
                     $noOfStudent += 1;
@@ -136,6 +127,28 @@ class Assignment extends CI_Model{
             return $score/$noOfStudent;
         }else{
             echo 'error setAssignmentList';
+        }
+    }
+    
+    public function getScoreGraphReportDataByStudentId($cid = 0, $assid = 0, $sid = 0){
+        $fileName = FCPATH."application/score/assignment.txt";
+        $score = 0;
+        if(file_exists($fileName)){
+            $myFile = fopen($fileName,"r") or die("Unable to open file!");
+            while (!feof($myFile)) {
+                $textLine = fgets($myFile);
+                $line = array();
+                $line = explode(",",$textLine);
+        
+                if($line[2] == $cid and $line[4] == $assid and $line[0] == $sid){
+                    $score += (int)$line[5];
+                }
+            }
+            //close file
+            fclose($myFile);
+            return $score;
+        }else{
+            echo 'error';
         }
     }
 }

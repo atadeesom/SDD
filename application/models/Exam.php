@@ -125,4 +125,26 @@ class Exam extends CI_Model{
 	        echo 'error setAssignmentList';
 	    }
 	}
+	
+	public function getExamScoreGraphReportDataByStudentId($cid = 0, $exam_id = 0, $sid = 0){
+	    $fileName = FCPATH."application/score/exam.txt";
+	    $score = 0;
+	    if(file_exists($fileName)){
+	        $myFile = fopen($fileName,"r") or die("Unable to open file!");
+	        while (!feof($myFile)) {
+	            $textLine = fgets($myFile);
+	            $line = array();
+	            $line = explode(",",$textLine);
+	            
+	            if($line[2] == $cid and $line[4] == $exam_id and $line[0] == $sid){
+	                $score += (int)$line[5];
+	            }
+	        }
+	        //close file
+	        fclose($myFile);
+	        return $score;
+	    }else{
+	        echo 'error';
+	    }
+	}
 }

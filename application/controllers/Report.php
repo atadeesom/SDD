@@ -58,18 +58,8 @@ class Report extends CI_Controller{
 	    $data = array();
 	    $data['courseList'] = array();
 	    
-	    $fileName = FCPATH."application/master/course.txt";
-	    if(file_exists($fileName)){
-	        $myFile = fopen($fileName,"r") or die("Unable to open file!");
-	        $courses = array();
-	        while (!feof($myFile)) {
-	            $textLine = fgets($myFile);
-	            array_push($courses, explode(",",$textLine));
-	        }
-	        fclose($myFile);
-	    }else{
-	        echo 'error';
-	    }
+	    $courses = array();
+	    $courses = $this->getCourseCombobox();
 	    
 	    //Search Data
 	    $assignmentScoreReport = array();
@@ -123,106 +113,53 @@ class Report extends CI_Controller{
 	 * This function is for teacher user's role.
 	 */
 	public function display_student_report(){
-		//TODO: implement function and return data to view.
-		// Set the page element
-		$page_element['page_title'] = "Report";
-		$page_element['method_name'] = "Index";
-		$data['title'] = 'Report';
-		$chk = $this->input->post('chk');
+	    $data = array();
+	    
+	    $sid = "";
+	    $courseName = "";
+	    
+	    $courseList = array();
+	    $courseList = $this->getCourseCombobox();
+	    
+		//Search Data
+		$assignmentScoreReport = array();
+		$examScoreReport = array();
 		
-		$data['classes_list'] = array();
-		
-		$fileName = FCPATH."application/master/course.txt";
-		
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			$classes = array();
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				
-				array_push($classes, explode(",",$textLine));
-			}
-			fclose($myFile);
-
-			$data['classes_list'] = $classes;
-			$data['errorMSG'] = 1;
-			
-		}else{
-			echo 'error';
-		}
-		
+		$method = $this->input->post('methodName');
 		//Search Data		
-		$sid = $this->input->post('studentId');
-		$cid = $this->input->post('courseId');
-
-		if ($chk == "") {
-			$data['errorMSG'] = 2;
-			$data['studentID'] = "";
-			$data['studentName'] = "";
-			$data['courseName'] = "";
-			$data['chk_err'] = 1;
-		}
-			
-		$data['errorMSG'] = 1;
-		$data['studentID'] = $sid;
-		$assignment = array();
-		$exam = array();
+		$sid = $this->input->post('studentCriteria');
+	    $cid = $this->input->post('courseCriteria');
+	    
+	    if('search' == $method){
+	        if(empty($sid) or empty($cid)) {
+	            $data['errorMSG'] = 2;
+	            $data['studentCriteria'] = "";
+	            $data['courseCriteria'] = "";
+    			$data['courseName'] = "";
+    			$data['studentID'] = "";
+	        }else{
+	            
+	            $this->load->model('Course');
+	            $courseDeatail = $this->Course->getCourseDetail($cid);
+	            $courseName = $courseDeatail['course_name'];
+	            
+	            $data = $this->searchStudentReport($cid, $sid);
+	        }
+	    }else if('clear' == $method){
+	        unset($assignmentScoreReport);
+	        unset($examScoreReport);
+	        
+	        $data['studentCriteria'] = "";
+	        $data['courseCriteria'] = "";
+	        
+	        $courseName = "";
+	        $sid = "";
+	    }
+	    
+	    $data['courseName'] = $courseName;
+	    $data['studentID'] = $sid;
+	    $data['courseList'] = $courseList;
 		
-		// Search Assignment
-		$fileName = FCPATH."application/score/assignment.txt";
-		if(file_exists($fileName)){
-			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-			$search = array();
-			$count = 0;
-			
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $sid)
-				{
-					$data['studentName'] = $line[1];
-					if($line[2] == $cid){
-						$data['courseName'] = $line[3];
-						$score = array('assg' => $line[4], 'score' => $line[5] );
-						array_push($assignment, $score);
-					}
-				}
-				array_push($search, explode(",",$textLine));
-				$count = sizeof($search);		
-			}
-			fclose($myFile);
-		}
-		
-		$data['assignment'] = $assignment;
-		
-		// Search Exam
-		$fileNameExam = FCPATH."application/score/exam.txt";
-		if(file_exists($fileNameExam)){
-			$myFile = fopen($fileNameExam,"r") or die("Unable to open file!");
-			$search = array();
-			$count = 0;
-				
-			while (!feof($myFile)) {
-				$textLine = fgets($myFile);
-				$line = array();
-				$line = explode(",",$textLine);
-				if($line[0] == $sid)
-				{
-					$data['studentName'] = $line[1];
-					if($line[2] == $cid){
-						$data['courseName'] = $line[3];
-						$score = array('exam' => $line[4], 'score' => $line[5] );
-						array_push($exam, $score);
-					}
-				}
-				array_push($search, explode(",",$textLine));
-				
-			}
-			fclose($myFile);
-		}
-		
-		$data['exam'] = $exam;
 		// return data to view
 		$page_element = $this->setDataReturnToView();
 		$page_element['nav_report_student_active'] = true;
@@ -233,91 +170,23 @@ class Report extends CI_Controller{
 		$this->load->view('template/footer',$data);
 	}
 	
-// 	public function display_student_report_Search(){
-// 		//Search Data
-// 		$sid = $this->input->post('studentId');
-// 		$cid = $this->input->post('courseId');
-
-// 		if ($chk == "") {
-// 			$data['errorMSG'] = 2;
-// 			$data['studentID'] = "";
-// 			$data['studentName'] = "";
-// 			$data['courseName'] = "";
-// 			$data['chk_err'] = 1;
-// 		}
-			
-// 		$data['errorMSG'] = 1;
-// 		$data['studentID'] = $sid;
-// 		$assignment = array();
-// 		$exam = array();
-		
-// 		// Search Assignment
-// 		$fileName = FCPATH."application/score/assignment.txt";
-// 		if(file_exists($fileName)){
-// 			$myFile = fopen($fileName,"r") or die("Unable to open file!");
-// 			$search = array();
-// 			$count = 0;
-			
-// 			while (!feof($myFile)) {
-// 				$textLine = fgets($myFile);
-// 				$line = array();
-// 				$line = explode(",",$textLine);
-// 				if($line[0] == $sid)
-// 				{
-// 					$data['studentName'] = $line[1];
-// 					if($line[2] == $cid){
-// 						$data['courseName'] = $line[3];
-// 						$score = array('assg' => $line[4], 'score' => $line[5] );
-// 						array_push($assignment, $score);
-// 					}
-// 				}
-// 				array_push($search, explode(",",$textLine));
-// 				$count = sizeof($search);		
-// 			}
-// 			fclose($myFile);
-// 		}
-		
-// 		$data['assignment'] = $assignment;
-		
-// 		// Search Exam
-// 		$fileNameExam = FCPATH."application/score/exam.txt";
-// 		if(file_exists($fileNameExam)){
-// 			$myFile = fopen($fileNameExam,"r") or die("Unable to open file!");
-// 			$search = array();
-// 			$count = 0;
-				
-// 			while (!feof($myFile)) {
-// 				$textLine = fgets($myFile);
-// 				$line = array();
-// 				$line = explode(",",$textLine);
-// 				if($line[0] == $sid)
-// 				{
-// 					$data['studentName'] = $line[1];
-// 					if($line[2] == $cid){
-// 						$data['courseName'] = $line[3];
-// 						$score = array('exam' => $line[4], 'score' => $line[5] );
-// 						array_push($exam, $score);
-// 					}
-// 				}
-// 				array_push($search, explode(",",$textLine));
-				
-// 			}
-// 			fclose($myFile);
-// 		}
-		
-// 		$data['exam'] = $exam;
-		
-// // 		echo '<pre>';
-// // 		print_r($exam);
-// // 		exit();
-		
-// 		// return data to view
-// 		$this->load->view('template/report_header',$page_element);
-// 		$this->load->view('report/teacher_report_student',$data);
-// 		$this->load->view('template/report_footer',$data);
-// 	}
-
-    public function searchCourseReport($course){
+	private function getCourseCombobox(){
+	    $courses = array();
+	    $fileName = FCPATH."application/master/course.txt";
+	    if(file_exists($fileName)){
+	        $myFile = fopen($fileName,"r") or die("Unable to open file!");
+	        while (!feof($myFile)) {
+	            $textLine = fgets($myFile);
+	            array_push($courses, explode(",",$textLine));
+	        }
+	        fclose($myFile);
+	    }else{
+	        echo 'error';
+	    }
+	    return $courses;
+	}
+	
+    private function searchCourseReport($course){
         $data['errorMSG'] = FALSE;
         
         // Load Model in this action of controller
@@ -326,24 +195,52 @@ class Report extends CI_Controller{
         
         $assignmentScoreReport = array();
         $examScoreReport = array();
-        //******* Start: Get Assignment Report ********//
+        // Get Assignment Report
         $assignments = $this->Assignment->getAssignmentDetailList($course);
         foreach($assignments as $vals){
             $scoreData = $this->Assignment->getAssignmentScoreGraphReportData($course,$vals['ass_id']);
             $assignmentScoreReport[$vals['ass_name']] = $scoreData;
         }
-        //******* End: Get Assignment Report ********//
         
-        //******* Start: Get Exam Report ********//
+        // Get Exam Report
         $exams = $this->Exam->setExamDetailList($course);
         foreach($exams as $vals){
             $scoreData = $this->Exam->getExamScoreGraphReportData($course,$vals['exam_id']);
             $examScoreReport[$vals['exam_name']] = $scoreData;
         }
-        //******* End: Get Exam Report ********//
         
         $data['assignment_data'] = $assignmentScoreReport;
         $data['exam_data'] = $examScoreReport;
+        return $data;
+    }
+    
+    private function searchStudentReport($course, $studentId){
+        $data['errorMSG'] = FALSE;
+        
+        // Load Model in this action of controller
+        $this->load->model('Assignment');
+        $this->load->model('Exam');
+        
+        $assignmentScoreReport = array();
+        $examScoreReport = array();
+        
+        // Get Assignment Report
+        $assignments = $this->Assignment->getAssignmentDetailList($course);
+        foreach($assignments as $vals){
+            $scoreData = $this->Assignment->getScoreGraphReportDataByStudentId($course, $vals['ass_id'], $studentId);
+            $assignmentScoreReport[$vals['ass_name']] = $scoreData;
+        }
+        
+        // Get Exam Report
+        $exams = $this->Exam->setExamDetailList($course);
+        foreach($exams as $vals){
+            $scoreData = $this->Exam->getExamScoreGraphReportDataByStudentId($course,$vals['exam_id'], $studentId);
+            $examScoreReport[$vals['exam_name']] = $scoreData;
+        }
+        
+        $data['assignment_data'] = $assignmentScoreReport;
+        $data['exam_data'] = $examScoreReport;
+        
         return $data;
     }
 }

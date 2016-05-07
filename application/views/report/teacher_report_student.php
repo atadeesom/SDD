@@ -1,13 +1,18 @@
      <script type="text/javascript">
-					function submitform(){
-						document.getElementById("reportStudentForm").submit();
-						
-					}
+		function submitform(){
+	    	document.getElementById("methodName").value = "search";
+			document.getElementById("reportStudentForm").submit();
+	    }
 
-					function errorMSG(){
-						alert("Search not found!!");
-					}
-				</script>
+	    function clear(){
+	    	document.getElementById("methodName").value = "clear";
+	    	document.getElementById("reportStudentForm").submit();
+	    }
+
+		function errorMSG(){
+			alert("Search not found!!");
+		}
+	</script>
      
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -35,24 +40,26 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form id="reportStudentForm" action="display_student_report" method="post">
+            	  <input type="hidden" id="methodName" name="methodName" value="init"/>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="StudentID">Student ID</label>
-                      <input type="text" class="form-control" name="studentId" placeholder="Enter Student ID" >
+                      <input type="text" class="form-control" name="studentCriteria" placeholder="Enter Student ID" >
                     </div>
                     <div>
                     	<label for="coursetxt">Course</label>
-                    	<select class="form-control" name="courseId">
-                    		<?php foreach ($classes_list as &$class) {?>
-   							<option value="<?php echo $class[0]; ?>"><?php echo $class[1]; ?></option>
-   							<?php } ?>
+                    	<select class="form-control" name="courseCriteria">
+                    		<option value="">----Please Select----</option>
+                            <?php foreach ($courseList as $class) {?>
+                            	<option value="<?php echo $class[0]; ?>"><?php echo $class[1]; ?></option>
+                            <?php } ?>
 						</select>   	
                     </div>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                   	<input type="hidden" name="chk">
                     <button class="btn bg-blue btn-flat btn-block" onclick ="submitform();">Search</button>
-                    <button class="btn bg-maroon btn-flat btn-block" >Clear</button>
+                    <button class="btn bg-maroon btn-flat btn-block" onclick="clear();">Clear</button>
                   </div>
                 </form>
                 
@@ -65,19 +72,12 @@
                   <h3 class="box-title">Student Info</h3>
                 </div>
                 <div class="box-body">
-                
-       			 
-        
-                
                   <label for="StudentIDtxt">Student ID : </label>
                   <label for="StudentIDtxt"><?php echo $studentID; ?></label>
                   <br>
                   <!--<label for="StudentNametxt">Student Name : <?php echo $studentName; ?></label>
                    <br> -->
                   <label for="coursetxt">Course : <?php echo $courseName; ?> </label>
-                  
-           
-                  
                 </div>
               </div>
             </div>
@@ -150,18 +150,26 @@
          * BAR CHART
          * ---------
          */
-//          var a = parseInt("7");
+		var assignment_data  = null;
+		var exam_data = null;
 
+		<?php 
+	        if(isset($assignment_data) and !empty($assignment_data)){ ?>
+	        	assignment_data = {
+	            	data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $assignment_data, array_keys($assignment_data))) . ']' ?>,
+	            	color: "#3c8dbc" 
+	        	}; 
+    	<?php 
+            }
+            if(isset($exam_data) and !empty($exam_data)){ ?>
+            	exam_data = {
+                	data: <?php echo '[' . implode(', ', array_map(function ($v, $k) { return sprintf("['%s',%s]", $k, $v); }, $exam_data, array_keys($exam_data))) . ']' ?>,
+        			color: "#3c8dbc"
+            	}
+        <?php 
+            }
+        ?>
          
-        var assignment_data = {
-          data: [["Ass1", 9], ["Ass2", 8], ["Ass3", 4], ["Ass4", 13], ["Ass5", 17], ["Ass6", 9]],
-          color: "#3c8dbc"
-        };
-        var exam_data = {
-          data: [["Exam1", 90], ["Exam2", 84], ["Exam3", 45], ["Exam4", 31], ["Exam5", 60], ["Exam6", 90]],
-          color: "#3c8dbc"
-        };
-
         /* ASSINMENT SCORE */
         $.plot("#ass-chart", [assignment_data], {
           grid: {
