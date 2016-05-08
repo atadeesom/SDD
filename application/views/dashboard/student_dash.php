@@ -45,7 +45,7 @@
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-yellow">
                   <h3 class="widget-user-username"><?php echo $course['course_name']; ?></h3>
-                  <h5 class="widget-user-desc">Code: <?php echo $cid; ?></h5>
+                  <h5 class="widget-user-desc">Code: <?php echo $course['cid']; ?></h5>
                   <h5 class="widget-user-desc"><?php echo $course['lecturer']; ?></h5>
                 </div>
                 <div class="box-footer no-padding">

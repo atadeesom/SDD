@@ -92,8 +92,8 @@ class Event extends CI_Controller {
 		// 4.Return status
 
 		// response result
-		$respo['status_code'] = 200;
-		$respo['status_massage'] = 'success';
+		$resp['status_code'] = 200;
+		$resp['status_massage'] = 'success';
 
 		/*
 		 * For test uncomment these lines
@@ -119,9 +119,26 @@ class Event extends CI_Controller {
 				if (!file_put_contents ($path, $this->file_header_application))
 				{
 					// response error 
-					$respo['status_code'] = 404;
+					$resp['status_code'] = 404;
+					$resp['status_massage'] = 'Internal Error: Unable to write file content';
+					echo json_encode($resp);
+					exit();// throw from this execution
 				}
 			}
+			// Append data into new line.
+			$line = $this->newline.$datetime.",".$user_id.",".$user_ip.",".$session_id.",".$message;
+			if(!write_file($path, $line , "a+"))
+			{
+				$resp['status_code'] = 404;
+				$resp['status_massage'] = 'Internal Error: Unable to write file content';
+				echo json_encode($resp);
+				exit(); //throw from this execution
+			}
+			echo json_encode($resp);
+		}else {
+			$resp['status_code'] = 400;
+			$resp['status_massage'] = 'Bad Request: Parameter is not enough.';
+			echo json_encode($resp);
 		}
 	}
 	
