@@ -1,18 +1,18 @@
 0001,Samonsri,01,Software Process Improvement,01,15
-0001,Samonsri,01,Software Process Improvement,02,16
-0001,Samonsri,01,Software Process Improvement,03,18 
-0001,Samonsri,02,Machine Learning,01,14
-0001,Samonsri,02,Machine Learning,02,16
-0001,Samonsri,02,Machine Learning,03,18
-0001,Samonsri,02,Machine Learning,04,12
-0001,Samonsri,03,Intro to Programming Language,01,14
-0001,Samonsri,03,Intro to Programming Language,02,16
-0001,Samonsri,03,Intro to Programming Language,03,18
-0001,Samonsri,03,Intro to Programming Language,04,12
-0002,Thongdee,01,Software Process Improvement,01,14
-0002,Thongdee,01,Software Process Improvement,02,19
-0002,Thongdee,01,Software Process Improvement,03,18
-0002,Thongdee,01,Software Process Improvement,04,33
+0001,Samonsri,01,Software Process Improvement,02,54
+0001,Samonsri,01,Software Process Improvement,03,21 
+0001,Samonsri,02,Machine Learning,01,43
+0001,Samonsri,02,Machine Learning,02,55
+0001,Samonsri,02,Machine Learning,03,34
+0001,Samonsri,02,Machine Learning,04,22
+0001,Samonsri,03,Intro to Programming Language,01,44
+0001,Samonsri,03,Intro to Programming Language,02,36
+0001,Samonsri,03,Intro to Programming Language,03,28
+0001,Samonsri,03,Intro to Programming Language,04,42
+0002,Thongdee,01,Software Process Improvement,01,34
+0002,Thongdee,01,Software Process Improvement,02,29
+0002,Thongdee,01,Software Process Improvement,03,48
+0002,Thongdee,01,Software Process Improvement,04,63
 0002,Thongdee,02,Machine Learning,01,99
 0002,Thongdee,02,Machine Learning,02,34
 0002,Thongdee,02,Machine Learning,03,32

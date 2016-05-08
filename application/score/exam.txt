@@ -1,36 +1,36 @@
-0001,Samonsri,01,Software Process Improvement,01,14
-0001,Samonsri,01,Software Process Improvement,02,16
-0001,Samonsri,01,Software Process Improvement,03,18
-0001,Samonsri,01,Software Process Improvement,04,12
-0001,Samonsri,02,Machine Learning,01,14
-0001,Samonsri,02,Machine Learning,02,16
-0001,Samonsri,02,Machine Learning,03,18
+0001,Samonsri,01,Software Process Improvement,01,30
+0001,Samonsri,01,Software Process Improvement,02,20
+0001,Samonsri,01,Software Process Improvement,03,15
+0001,Samonsri,01,Software Process Improvement,04,10
+0001,Samonsri,02,Machine Learning,01,40
+0001,Samonsri,02,Machine Learning,02,36
+0001,Samonsri,02,Machine Learning,03,28
 0001,Samonsri,02,Machine Learning,04,12
-0001,Samonsri,03,Intro to Programming Language,01,14
-0001,Samonsri,03,Intro to Programming Language,02,16
-0001,Samonsri,03,Intro to Programming Language,03,18
-0001,Samonsri,03,Intro to Programming Language,04,12
-0002,Thongdee,01,Software Process Improvement,01,14
-0002,Thongdee,01,Software Process Improvement,02,16
-0002,Thongdee,01,Software Process Improvement,03,18
-0002,Thongdee,01,Software Process Improvement,04,12
-0002,Thongdee,02,Machine Learning,01,14
-0002,Thongdee,02,Machine Learning,02,16
-0002,Thongdee,02,Machine Learning,03,18
-0002,Thongdee,02,Machine Learning,04,12
-0002,Thongdee,03,Intro to Programming Language,01,14
-0002,Thongdee,03,Intro to Programming Language,02,16
-0002,Thongdee,03,Intro to Programming Language,03,18
-0002,Thongdee,03,Intro to Programming Language,04,12
-0003,Meechai,01,Software Process Improvement,01,14
-0003,Meechai,01,Software Process Improvement,02,16
-0003,Meechai,01,Software Process Improvement,03,18
-0003,Meechai,01,Software Process Improvement,04,12
-0003,Meechai,02,Machine Learning,01,14
+0001,Samonsri,03,Intro to Programming Language,01,34
+0001,Samonsri,03,Intro to Programming Language,02,45
+0001,Samonsri,03,Intro to Programming Language,03,19
+0001,Samonsri,03,Intro to Programming Language,04,11
+0002,Thongdee,01,Software Process Improvement,01,13
+0002,Thongdee,01,Software Process Improvement,02,14
+0002,Thongdee,01,Software Process Improvement,03,44
+0002,Thongdee,01,Software Process Improvement,04,67
+0002,Thongdee,02,Machine Learning,01,23
+0002,Thongdee,02,Machine Learning,02,40
+0002,Thongdee,02,Machine Learning,03,54
+0002,Thongdee,02,Machine Learning,04,46
+0002,Thongdee,03,Intro to Programming Language,01,78
+0002,Thongdee,03,Intro to Programming Language,02,96
+0002,Thongdee,03,Intro to Programming Language,03,43
+0002,Thongdee,03,Intro to Programming Language,04,15
+0003,Meechai,01,Software Process Improvement,01,13
+0003,Meechai,01,Software Process Improvement,02,36
+0003,Meechai,01,Software Process Improvement,03,48
+0003,Meechai,01,Software Process Improvement,04,42
+0003,Meechai,02,Machine Learning,01,54
 0003,Meechai,02,Machine Learning,02,16
-0003,Meechai,02,Machine Learning,03,18
-0003,Meechai,02,Machine Learning,04,12
-0003,Meechai,03,Intro to Programming Language,01,14
-0003,Meechai,03,Intro to Programming Language,02,16
-0003,Meechai,03,Intro to Programming Language,03,18
-0003,Meechai,03,Intro to Programming Language,04,12
+0003,Meechai,02,Machine Learning,03,78
+0003,Meechai,02,Machine Learning,04,92
+0003,Meechai,03,Intro to Programming Language,01,34
+0003,Meechai,03,Intro to Programming Language,02,66
+0003,Meechai,03,Intro to Programming Language,03,98
+0003,Meechai,03,Intro to Programming Language,04,32
